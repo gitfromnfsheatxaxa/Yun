@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   NEO-GOTHIC DARK ASIAN AESTHETIC
+   "A hidden neo-gothic tattoo sanctuary in Tokyo
+    illuminated by dark red neon light."
+   ============================================ */
+
+:root {
+  --pure-black: #050505;
+  --secondary-black: #0A0A0A;
+  --deep-red: #3B0000;
+  --neon-red: #8B0000;
+  --soft-white: #EDEDED;
+  --muted-gray: #9A9A9A;
+  --charcoal: #1a1a1a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--pure-black);
+  color: var(--soft-white);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   ATMOSPHERIC NOISE & TEXTURE OVERLAYS
+   ============================================ */
+
+/* Film Grain Overlay - Static (no shaking) */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* VHS Noise Effect */
+.vhs-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0.03;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(139, 0, 0, 0.1) 2px,
+    rgba(139, 0, 0, 0.1) 4px
+  );
+  animation: vhs-scan 8s linear infinite;
+}
+
+@keyframes vhs-scan {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100vh; }
+}
+
+/* Red Ambient Glow */
+.red-ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9996;
+  background: 
+    radial-gradient(ellipse at 20% 80%, rgba(59, 0, 0, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(139, 0, 0, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
+}
+
+/* Dark Particles / Stars */
+.dark-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9995;
+  opacity: 0.4;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(139, 0, 0, 0.8), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(139, 0, 0, 0.6), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(237, 237, 237, 0.5), transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(139, 0, 0, 0.7), transparent),
+    radial-gradient(1px 1px at 230px 80px, rgba(237, 237, 237, 0.4), transparent),
+    radial-gradient(2px 2px at 300px 150px, rgba(139, 0, 0, 0.5), transparent),
+    radial-gradient(1px 1px at 350px 200px, rgba(237, 237, 237, 0.3), transparent),
+    radial-gradient(2px 2px at 420px 50px, rgba(139, 0, 0, 0.6), transparent),
+    radial-gradient(1px 1px at 500px 180px, rgba(237, 237, 237, 0.4), transparent),
+    radial-gradient(2px 2px at 580px 100px, rgba(139, 0, 0, 0.5), transparent);
+  animation: particle-drift 60s linear infinite;
+}
+
+@keyframes particle-drift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100px); }
+}
+
+/* Gothic Fog - Static (no movement to prevent shaking) */
+.gothic-fog {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9994;
+  opacity: 0.1;
+  background: 
+    radial-gradient(ellipse at 10% 50%, rgba(59, 0, 0, 0.2) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 60%, rgba(139, 0, 0, 0.15) 0%, transparent 40%);
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pure-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--deep-red);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-red);
+}
+
+::selection {
+  background: var(--neon-red);
+  color: var(--soft-white);
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.font-gothic {
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.font-serif, .font-body {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Cinematic Hero Typography */
+.hero-text {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-text-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.1em;
+}
+
+/* Text Glow Effects */
+.text-glow {
+  text-shadow: 
+    0 0 20px rgba(139, 0, 0, 0.5),
+    0 0 40px rgba(59, 0, 0, 0.3),
+    0 0 60px rgba(139, 0, 0, 0.2);
+}
+
+.text-glow-strong {
+  text-shadow: 
+    0 0 30px rgba(139, 0, 0, 0.8),
+    0 0 60px rgba(59, 0, 0, 0.5),
+    0 0 90px rgba(139, 0, 0, 0.3);
+}
+
+/* Gradient Text */
+.text-gradient-red {
+  background: linear-gradient(135deg, #EDEDED 0%, #8B0000 50%, #3B0000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-crimson {
+  background: linear-gradient(135deg, #8B0000 0%, #ff1a1a 50%, #8B0000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(-10deg); }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.bg-glass {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.bg-glass-strong {
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+.border-glow {
+  box-shadow: 
+    0 0 20px rgba(139, 0, 0, 0.3),
+    inset 0 0 20px rgba(59, 0, 0, 0.2);
+}
+
+.border-glow-hover:hover {
+  box-shadow: 
+    0 0 30px rgba(139, 0, 0, 0.5),
+    inset 0 0 30px rgba(59, 0, 0, 0.3);
+}
+
+/* Red Accent Line */
+.accent-line {
+  position: relative;
+  display: inline-block;
+}
+
+.accent-line::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #8B0000, #3B0000, #8B0000, transparent);
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Japanese Vertical Text */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.3em;
+}
+
+/* Decorative Corners */
+.decorative-corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-color: #8B0000;
+  opacity: 0.4;
+  transition: all 0.5s ease;
+}
+
+.decorative-corner.top-left {
+  top: 0;
+  left: 0;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.decorative-corner.top-right {
+  top: 0;
+  right: 0;
+  border-top: 1px solid;
+  border-right: 1px solid;
+}
+
+.decorative-corner.bottom-left {
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+}
+
+.decorative-corner.bottom-right {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+
+.group:hover .decorative-corner {
+  opacity: 0.8;
+  width: 80px;
+  height: 80px;
+}
+
+/* Section Divider */
+.section-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #8B0000, #3B0000, #8B0000, transparent);
+  margin: 4rem 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8B0000;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.section-divider::before {
+  left: 15%;
+}
+
+.section-divider::after {
+  right: 15%;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
+.btn-primary {
+  position: relative;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #3B0000 0%, #8B0000 100%);
+  color: #EDEDED;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid #8B0000;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #8B0000 0%, #3B0000 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 40px rgba(139, 0, 0, 0.5);
+  border-color: #EDEDED;
+}
+
+.btn-primary span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-secondary {
+  position: relative;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  color: #EDEDED;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid #8B0000;
+  transition: all 0.5s ease;
+}
+
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid #8B0000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 0 30px rgba(139, 0, 0, 0.4);
+}
+
+.btn-secondary:hover::before {
+  opacity: 1;
+}
+
+/* ============================================
+   CARD STYLES
+   ============================================ */
+
+.card-dark {
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(139, 0, 0, 0.2);
+  transition: all 0.5s ease;
+}
+
+.card-dark:hover {
+  border-color: rgba(139, 0, 0, 0.6);
+  box-shadow: 0 0 40px rgba(139, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+/* ============================================
+   INPUT STYLES
+   ============================================ */
+
+.input-dark {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: rgba(5, 5, 5, 0.8);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  color: #EDEDED;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  transition: all 0.4s ease;
+}
+
+.input-dark::placeholder {
+  color: rgba(154, 154, 154, 0.5);
+}
+
+.input-dark:focus {
+  outline: none;
+  border-color: #8B0000;
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.2);
+}
+
+/* ============================================
+   ANIMATION UTILITIES
+   ============================================ */
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 20s linear infinite;
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .hero-text {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+  
+  .section-divider::before {
+    left: 10%;
+  }
+  
+  .section-divider::after {
+    right: 10%;
+  }
+}

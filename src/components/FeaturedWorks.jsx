@@ -1,0 +1,177 @@
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
+const featuredWorks = [
+  {
+    id: 1,
+    title: 'Crimson Dragon',
+    category: 'Dragon',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+  },
+  {
+    id: 2,
+    title: 'Oni Mask',
+    category: 'Japanese',
+    image: 'https://images.unsplash.com/photo-1618331835717-801e976710b2?w=600&h=600&fit=crop',
+  },
+  {
+    id: 3,
+    title: 'Gothic Rose',
+    category: 'Gothic',
+    image: 'https://images.unsplash.com/photo-1590246294723-1b6d53b3d8a7?w=600&h=700&fit=crop',
+  },
+  {
+    id: 4,
+    title: 'Sleeve Masterpiece',
+    category: 'Full Sleeve',
+    image: 'https://images.unsplash.com/photo-1565457088505-6b5b8f8f8f8f?w=600&h=800&fit=crop',
+  },
+  {
+    id: 5,
+    title: 'Koi Fish',
+    category: 'Japanese',
+    image: 'https://images.unsplash.com/photo-1579782500055-95d8a0da8b6a?w=600&h=600&fit=crop',
+  },
+  {
+    id: 6,
+    title: 'Blackwork Symbol',
+    category: 'Blackwork',
+    image: 'https://images.unsplash.com/photo-1562962230-16e4623d36e6?w=600&h=700&fit=crop',
+  },
+];
+
+const FeaturedWorks = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  };
+
+  return (
+    <section className="relative py-32 px-6 bg-pure-black overflow-hidden">
+      {/* Atmospheric Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-pure-black via-secondary-black to-pure-black" />
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-deep-red rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-neon-red rounded-full blur-[100px]" />
+      </div>
+
+      {/* Grain Overlay */}
+      <div className="absolute inset-0 grain-overlay opacity-30" />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
+        >
+          <span className="text-neon-red text-[0.75rem] tracking-[0.4em] mb-6 block font-serif uppercase">
+            Portfolio
+          </span>
+          <h2 className="font-gothic text-4xl md:text-6xl font-bold text-soft-white mb-6">
+            Featured <span className="text-gradient-crimson">Works</span>
+          </h2>
+          <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-neon-red to-transparent mx-auto" />
+        </motion.div>
+
+        {/* Gallery Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
+        >
+          {featuredWorks.map((work) => (
+            <motion.div
+              key={work.id}
+              variants={itemVariants}
+              className="group relative overflow-hidden bg-secondary-black aspect-[3/4]"
+            >
+              {/* Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={work.image}
+                  alt={work.title}
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-pure-black via-pure-black/50 to-transparent" />
+                <div className="absolute inset-0 bg-deep-red/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              </div>
+
+              {/* Red Glow Border on Hover */}
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-neon-red transition-colors duration-500 pointer-events-none" />
+              <div className="absolute inset-0 shadow-red-glow opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              {/* Decorative Corners */}
+              <div className="decorative-corner top-left" />
+              <div className="decorative-corner top-right" />
+              <div className="decorative-corner bottom-left" />
+              <div className="decorative-corner bottom-right" />
+
+              {/* Content Overlay */}
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileHover={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+                >
+                  <span className="text-neon-red text-[0.65rem] tracking-[0.3em] mb-3 block font-serif uppercase">
+                    {work.category}
+                  </span>
+                  <h3 className="font-gothic text-xl font-bold text-soft-white mb-2">
+                    {work.title}
+                  </h3>
+                  <div className="w-12 h-[1px] bg-gradient-to-r from-neon-red to-transparent" />
+                </motion.div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
+        >
+          <Link
+            to="/works"
+            className="btn-secondary inline-flex items-center space-x-4"
+          >
+            <span>Explore Full Portfolio</span>
+            <svg
+              className="w-5 h-5 text-neon-red transform group-hover:translate-x-2 transition-transform duration-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default FeaturedWorks;
