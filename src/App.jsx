@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -7,9 +8,23 @@ import WorksPage from './pages/WorksPage';
 import PricesPage from './pages/PricesPage';
 import ContactPage from './pages/ContactPage';
 
+function ScrollToTop() {
+  useEffect(() => {
+    const handleScrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    document.addEventListener('click', handleScrollToTop);
+    return () => document.removeEventListener('click', handleScrollToTop);
+  }, []);
+
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-pure-black">
         <Navbar />
         <Routes>
