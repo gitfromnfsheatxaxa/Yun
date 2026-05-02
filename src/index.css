@@ -38,6 +38,12 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: url('/src/assets/decor/cursor.png'), auto;
+}
+
+/* Custom Cursor for Links */
+a, button {
+  cursor: url('/src/assets/decor/cursor.png'), pointer;
 }
 
 /* ============================================

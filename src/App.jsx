@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import WorksPage from './pages/WorksPage';
 import PricesPage from './pages/PricesPage';
 import ContactPage from './pages/ContactPage';
+import { ChainBorders, MoonBackground, RosesDecor, DancingJesters, CandelebraDecor } from './components/Decorations';
 
 function ScrollToTop() {
   useEffect(() => {
@@ -25,6 +26,13 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      {/* Decorative Elements */}
+      <ChainBorders />
+      <MoonBackground />
+      <RosesDecor />
+      <DancingJesters />
+      <CandelebraDecor />
+      
       <div className="min-h-screen bg-pure-black">
         <Navbar />
         <Routes>

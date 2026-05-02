@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import bgImage5 from '../assets/background/5 1.png';
+import topPlace from '../assets/decor/toplace.png';
 
 const featuredWorks = [
   {
@@ -72,6 +73,15 @@ const FeaturedWorks = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-pure-black/85 via-pure-black/60 to-pure-black/85" />
+      </div>
+
+      {/* Top Place Frame */}
+      <div className="fixed top-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
+        <img 
+          src={topPlace} 
+          alt="Decorative Frame" 
+          className="w-64 h-auto opacity-60"
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
