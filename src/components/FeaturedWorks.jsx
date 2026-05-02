@@ -75,28 +75,29 @@ const FeaturedWorks = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-pure-black/85 via-pure-black/60 to-pure-black/85" />
       </div>
 
-      {/* Top Place Frame */}
-      <div className="fixed top-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
-        <img 
-          src={topPlace} 
-          alt="Decorative Frame" 
-          className="w-64 h-auto opacity-60"
-        />
-      </div>
-
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section Header */}
+        {/* Section Header with Top Place Frame */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
-          <span className="text-neon-red text-[0.75rem] tracking-[0.4em] mb-6 block font-serif uppercase">
-            Portfolio
-          </span>
-          <h2 className="font-gothic text-4xl md:text-6xl font-bold text-soft-white mb-6">
+          {/* Top Place Frame around header */}
+          <div className="relative inline-block mb-4">
+            <img 
+              src={topPlace} 
+              alt="Decorative Frame" 
+              className="w-96 h-32 object-contain"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-neon-red text-[0.75rem] tracking-[0.4em] font-serif uppercase">
+                Portfolio
+              </span>
+            </div>
+          </div>
+          <h2 className="font-gothic text-4xl md:text-6xl font-bold text-soft-white mb-2">
             Featured <span className="text-gradient-crimson">Works</span>
           </h2>
           <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-neon-red to-transparent mx-auto" />
