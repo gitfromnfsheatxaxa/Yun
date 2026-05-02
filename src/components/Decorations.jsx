@@ -17,7 +17,7 @@ export const ChainBorders = () => {
             backgroundRepeat: 'repeat-y',
             backgroundSize: 'contain',
           }}
-          animate={{ opacity: [0.9, 1, 0.9] }}
+          animate={{ opacity: [0.9, 3, 0.9] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
       </div>
@@ -31,7 +31,7 @@ export const ChainBorders = () => {
             backgroundRepeat: 'repeat-y',
             backgroundSize: 'contain',
           }}
-          animate={{ opacity: [0.9, 1, 0.9] }}
+          animate={{ opacity: [0.9, 3, 0.9] }}
           transition={{ duration: 2, repeat: Infinity, delay: 1 }}
         />
       </div>
@@ -41,9 +41,9 @@ export const ChainBorders = () => {
 
 export const MoonBackground = () => {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
+    <div className="fixed inset-0 z-1 pointer-events-none">
       <motion.div
-        className="absolute top-8 right-32 w-96 h-96 opacity-60"
+        className="absolute top-20 right-32 w-96 h-96 opacity-70"
         style={{
           backgroundImage: `url(${moon})`,
           backgroundSize: 'contain',
@@ -65,7 +65,7 @@ export const RosesDecor = () => {
     <div className="fixed inset-0 z-0 pointer-events-none">
       {/* Bottom Left Roses */}
       <motion.div
-        className="absolute bottom-0 left-0 w-64 h-64 opacity-40"
+        className="absolute bottom-1 left-0 w-64 h-64 opacity-90"
         style={{
           backgroundImage: `url(${roses})`,
           backgroundSize: 'contain',

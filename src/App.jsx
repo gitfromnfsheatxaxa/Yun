@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -8,6 +8,7 @@ import WorksPage from './pages/WorksPage';
 import PricesPage from './pages/PricesPage';
 import ContactPage from './pages/ContactPage';
 import { ChainBorders, MoonBackground, RosesDecor, CandelebraDecor } from './components/Decorations';
+import LoadingScreen from './components/LoadingScreen';
 
 function ScrollToTop() {
   useEffect(() => {
@@ -23,26 +24,41 @@ function ScrollToTop() {
 }
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
-      {/* Decorative Elements */}
-      <ChainBorders />
-      <MoonBackground />
-      <RosesDecor />
-      <CandelebraDecor />
-      
-      <div className="min-h-screen bg-pure-black">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/works" element={<WorksPage />} />
-          <Route path="/prices" element={<PricesPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Routes>
-        <Footer />
-      </div>
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          {/* Decorative Elements */}
+          <ChainBorders />
+          <MoonBackground />
+          <RosesDecor />
+          <CandelebraDecor />
+          
+          <div className="min-h-screen bg-pure-black">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/works" element={<WorksPage />} />
+              <Route path="/prices" element={<PricesPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+            </Routes>
+            <Footer />
+          </div>
+        </>
+      )}
     </Router>
   );
 }
