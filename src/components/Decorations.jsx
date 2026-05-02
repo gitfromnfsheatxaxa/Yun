@@ -3,8 +3,6 @@ import chainLeft from '../assets/decor/chain.gif';
 import chainRight from '../assets/decor/chain.gif';
 import moon from '../assets/decor/moon.webp';
 import roses from '../assets/decor/roses.png';
-import jesterLeft from '../assets/decor/jester2_left.png';
-import jesterRight from '../assets/decor/jester2_right.png';
 import candelebra from '../assets/decor/candelebra.gif';
 
 export const ChainBorders = () => {
@@ -13,28 +11,28 @@ export const ChainBorders = () => {
       {/* Left Chain Border */}
       <div className="fixed left-4 top-0 bottom-0 z-0 pointer-events-none">
         <motion.div
-          className="w-12 h-full"
+          className="w-16 h-full"
           style={{
             backgroundImage: `url(${chainLeft})`,
             backgroundRepeat: 'repeat-y',
             backgroundSize: 'contain',
           }}
-          animate={{ opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 3, repeat: Infinity }}
+          animate={{ opacity: [0.9, 1, 0.9] }}
+          transition={{ duration: 2, repeat: Infinity }}
         />
       </div>
 
       {/* Right Chain Border */}
       <div className="fixed right-4 top-0 bottom-0 z-0 pointer-events-none">
         <motion.div
-          className="w-12 h-full"
+          className="w-16 h-full"
           style={{
             backgroundImage: `url(${chainRight})`,
             backgroundRepeat: 'repeat-y',
             backgroundSize: 'contain',
           }}
-          animate={{ opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+          animate={{ opacity: [0.9, 1, 0.9] }}
+          transition={{ duration: 2, repeat: Infinity, delay: 1 }}
         />
       </div>
     </>
@@ -45,7 +43,7 @@ export const MoonBackground = () => {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none">
       <motion.div
-        className="absolute top-10 right-20 w-80 h-80 opacity-40"
+        className="absolute top-8 right-32 w-96 h-96 opacity-60"
         style={{
           backgroundImage: `url(${moon})`,
           backgroundSize: 'contain',
@@ -53,10 +51,10 @@ export const MoonBackground = () => {
           backgroundPosition: 'center',
         }}
         animate={{
-          y: [0, -30, 0],
-          rotate: [0, 10, 0],
+          y: [0, -40, 0],
+          rotate: [0, 15, 0],
         }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
     </div>
   );
@@ -86,41 +84,6 @@ export const RosesDecor = () => {
         }}
         animate={{ rotate: [0, -5, 0] }}
         transition={{ duration: 8, repeat: Infinity, delay: 2 }}
-      />
-    </div>
-  );
-};
-
-export const DancingJesters = () => {
-  return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
-      {/* Left Jester - Dancing by hiding/showing */}
-      <motion.div
-        className="absolute bottom-24 left-12 w-32 h-32"
-        style={{
-          backgroundImage: `url(${jesterLeft})`,
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-        }}
-        animate={{
-          opacity: [1, 0, 1, 0, 1],
-          scale: [1, 0.8, 1, 0.8, 1],
-        }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-      />
-      {/* Right Jester - Dancing by hiding/showing */}
-      <motion.div
-        className="absolute bottom-24 right-12 w-32 h-32"
-        style={{
-          backgroundImage: `url(${jesterRight})`,
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-        }}
-        animate={{
-          opacity: [0, 1, 0, 1, 0],
-          scale: [0.8, 1, 0.8, 1, 0.8],
-        }}
-        transition={{ duration: 1.5, repeat: Infinity }}
       />
     </div>
   );
