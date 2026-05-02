@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import bgImage5 from '../assets/background/5 1.png';
 
 const featuredWorks = [
   {
@@ -12,31 +13,31 @@ const featuredWorks = [
     id: 2,
     title: 'Oni Mask',
     category: 'Japanese',
-    image: 'https://images.unsplash.com/photo-1618331835717-801e976710b2?w=600&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
   },
   {
     id: 3,
     title: 'Gothic Rose',
     category: 'Gothic',
-    image: 'https://images.unsplash.com/photo-1590246294723-1b6d53b3d8a7?w=600&h=700&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
   },
   {
     id: 4,
     title: 'Sleeve Masterpiece',
     category: 'Full Sleeve',
-    image: 'https://images.unsplash.com/photo-1565457088505-6b5b8f8f8f8f?w=600&h=800&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
   },
   {
     id: 5,
     title: 'Koi Fish',
     category: 'Japanese',
-    image: 'https://images.unsplash.com/photo-1579782500055-95d8a0da8b6a?w=600&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
   },
   {
     id: 6,
     title: 'Blackwork Symbol',
     category: 'Blackwork',
-    image: 'https://images.unsplash.com/photo-1562962230-16e4623d36e6?w=600&h=700&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
   },
 ];
 
@@ -56,21 +57,22 @@ const FeaturedWorks = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: 'easeOut' },
+      transition: { duration: 0.5, ease: 'easeOut' },
     },
   };
 
   return (
-    <section className="relative py-32 px-6 bg-pure-black overflow-hidden">
-      {/* Atmospheric Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-pure-black via-secondary-black to-pure-black" />
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-deep-red rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-neon-red rounded-full blur-[100px]" />
+    <section className="relative py-32 px-6 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img 
+          src={bgImage5} 
+          alt="Background" 
+          loading="lazy"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-pure-black/85 via-pure-black/60 to-pure-black/85" />
       </div>
-
-      {/* Grain Overlay */}
-      <div className="absolute inset-0 grain-overlay opacity-30" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
@@ -78,7 +80,7 @@ const FeaturedWorks = () => {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
           <span className="text-neon-red text-[0.75rem] tracking-[0.4em] mb-6 block font-serif uppercase">
@@ -109,15 +111,14 @@ const FeaturedWorks = () => {
                 <img
                   src={work.image}
                   alt={work.title}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-90"
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-pure-black via-pure-black/50 to-transparent" />
-                <div className="absolute inset-0 bg-deep-red/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               </div>
 
               {/* Red Glow Border on Hover */}
-              <div className="absolute inset-0 border-2 border-transparent group-hover:border-neon-red transition-colors duration-500 pointer-events-none" />
-              <div className="absolute inset-0 shadow-red-glow opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-neon-red transition-colors duration-300 pointer-events-none" />
 
               {/* Decorative Corners */}
               <div className="decorative-corner top-left" />
@@ -130,8 +131,8 @@ const FeaturedWorks = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileHover={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+                  transition={{ duration: 0.3 }}
+                  className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
                 >
                   <span className="text-neon-red text-[0.65rem] tracking-[0.3em] mb-3 block font-serif uppercase">
                     {work.category}
@@ -151,7 +152,7 @@ const FeaturedWorks = () => {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="text-center"
         >
           <Link
@@ -160,7 +161,7 @@ const FeaturedWorks = () => {
           >
             <span>Explore Full Portfolio</span>
             <svg
-              className="w-5 h-5 text-neon-red transform group-hover:translate-x-2 transition-transform duration-500"
+              className="w-5 h-5 text-neon-red"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import bgImage1 from '../assets/background/1 1.png';
 
 const AboutPage = () => {
   const timeline = [
@@ -19,31 +20,29 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="relative min-h-screen bg-pure-black overflow-hidden">
-      {/* Background Effects */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="smoke-overlay" />
-        <div className="dragon-pattern-overlay" />
-        <div className="noise-texture" />
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background Image */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-image-wrapper">
+          <img 
+            src={bgImage1} 
+            alt="Background" 
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="bg-image-overlay" />
+      </div>
+
+      {/* Atmospheric Effects - Reduced for performance */}
+      <div className="fixed inset-0 pointer-events-none z-1">
+        <div className="grain-overlay" />
+        <div className="red-ambient" />
       </div>
 
       {/* Hero Section */}
       <section className="relative z-10 min-h-screen flex items-center justify-center px-6 pt-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-pure-black via-dark-charcoal to-pure-black" />
-        
-        {/* Decorative Dragon */}
-        <div className="absolute inset-0 opacity-5">
-          <svg viewBox="0 0 1440 800" className="w-full h-full">
-            <path
-              d="M100,400 Q300,100 500,350 Q700,500 900,300 Q1100,150 1350,400"
-              fill="none"
-              stroke="#8B0000"
-              strokeWidth="3"
-            />
-          </svg>
-        </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -69,6 +68,7 @@ const AboutPage = () => {
                   <img
                     src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop"
                     alt="Artist Portrait"
+                    loading="lazy"
                     className="w-full h-full object-cover opacity-80"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-blood-red/40 to-transparent" />
@@ -126,7 +126,7 @@ const AboutPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
@@ -146,12 +146,12 @@ const AboutPage = () => {
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className={`flex items-center mb-12 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
               >
                 <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'}`}>
-                  <div className="bg-dark-charcoal/50 border border-blood-red/20 p-6 relative">
+                  <div className="bg-dark-charcoal/80 border border-blood-red/20 p-6 relative backdrop-blur-sm">
                     <div className="absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-neon-crimson rounded-full" 
                          style={{ [index % 2 === 0 ? 'right' : 'left']: '-28px' }} />
                     <span className="text-blood-red font-gothic text-2xl font-bold">{item.year}</span>
@@ -171,7 +171,7 @@ const AboutPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
@@ -188,9 +188,9 @@ const AboutPage = () => {
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-dark-charcoal/50 border border-blood-red/20 p-8 text-center hover:border-neon-crimson/50 transition-colors duration-300 group"
+                className="bg-dark-charcoal/80 border border-blood-red/20 p-8 text-center hover:border-neon-crimson/50 transition-colors duration-300 group backdrop-blur-sm"
               >
                 <div className="text-4xl mb-4">{specialty.icon}</div>
                 <h3 className="font-gothic text-xl font-semibold text-soft-white mb-2 group-hover:text-neon-crimson transition-colors">
@@ -209,7 +209,7 @@ const AboutPage = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
             <div className="text-6xl text-blood-red/30 font-gothic mb-6">"</div>

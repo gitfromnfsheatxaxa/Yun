@@ -46,8 +46,11 @@ body {
 
 /* Film Grain Overlay - Static (no shaking) */
 .grain-overlay {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
   pointer-events: none;
   z-index: 9998;
   opacity: 0.04;
@@ -56,8 +59,11 @@ body {
 
 /* VHS Noise Effect */
 .vhs-noise {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
   pointer-events: none;
   z-index: 9997;
   opacity: 0.03;
@@ -78,8 +84,11 @@ body {
 
 /* Red Ambient Glow */
 .red-ambient {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
   pointer-events: none;
   z-index: 9996;
   background: 
@@ -90,8 +99,11 @@ body {
 
 /* Dark Particles / Stars */
 .dark-particles {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
   pointer-events: none;
   z-index: 9995;
   opacity: 0.4;
@@ -114,10 +126,354 @@ body {
   100% { transform: translateY(-100px); }
 }
 
-/* Gothic Fog - Static (no movement to prevent shaking) */
-.gothic-fog {
+/* Floating Embers - Rising sparks with glow */
+.floating-embers {
   position: fixed;
   inset: 0;
+  pointer-events: none;
+  z-index: 9993;
+  overflow: hidden;
+}
+
+.floating-embers::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 100, 50, 0.6);
+  border-radius: 50%;
+  box-shadow: 
+    100px 150px rgba(255, 80, 40, 0.5),
+    200px 300px rgba(255, 120, 60, 0.4),
+    350px 100px rgba(255, 90, 50, 0.6),
+    500px 250px rgba(255, 100, 50, 0.5),
+    650px 180px rgba(255, 110, 55, 0.4),
+    800px 350px rgba(255, 95, 45, 0.5),
+    150px 450px rgba(255, 85, 40, 0.4),
+    400px 500px rgba(255, 105, 50, 0.6),
+    600px 420px rgba(255, 90, 45, 0.5),
+    750px 280px rgba(255, 100, 50, 0.4),
+    900px 150px rgba(255, 115, 60, 0.5),
+    100px 550px rgba(255, 88, 42, 0.4),
+    300px 650px rgba(255, 98, 48, 0.5),
+    550px 520px rgba(255, 108, 52, 0.6),
+    700px 600px rgba(255, 92, 46, 0.4),
+    850px 480px rgba(255, 102, 50, 0.5),
+    250px 200px rgba(255, 95, 45, 0.4),
+    450px 380px rgba(255, 112, 58, 0.5),
+    620px 550px rgba(255, 87, 43, 0.4),
+    780px 220px rgba(255, 99, 49, 0.6);
+  animation: ember-rise 15s ease-in-out infinite;
+}
+
+.floating-embers::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 150, 100, 0.3);
+  border-radius: 50%;
+  box-shadow: 
+    80px 200px rgba(255, 140, 90, 0.3),
+    220px 380px rgba(255, 160, 110, 0.25),
+    380px 120px rgba(255, 145, 95, 0.3),
+    520px 280px rgba(255, 155, 105, 0.25),
+    680px 150px rgba(255, 148, 98, 0.3),
+    820px 320px rgba(255, 152, 102, 0.25),
+    120px 480px rgba(255, 138, 88, 0.3),
+    350px 550px rgba(255, 158, 108, 0.25),
+    580px 450px rgba(255, 142, 92, 0.3),
+    720px 350px rgba(255, 156, 106, 0.25),
+    920px 180px rgba(255, 144, 94, 0.3),
+    180px 600px rgba(255, 150, 100, 0.25),
+    320px 700px rgba(255, 154, 104, 0.3),
+    500px 580px rgba(255, 146, 96, 0.25),
+    650px 620px rgba(255, 152, 102, 0.3),
+    800px 520px rgba(255, 140, 90, 0.25),
+    280px 250px rgba(255, 155, 105, 0.3),
+    480px 420px rgba(255, 148, 98, 0.25),
+    600px 580px rgba(255, 158, 108, 0.3),
+    750px 280px rgba(255, 142, 92, 0.25);
+  animation: ember-rise 20s ease-in-out infinite reverse;
+}
+
+@keyframes ember-rise {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(50vh) translateX(30px);
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100px) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+/* Floating Geometric Shapes - Gothic ornaments */
+.floating-shapes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9992;
+  opacity: 0.15;
+}
+
+.floating-shapes::before {
+  content: '◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇◆◇';
+  position: absolute;
+  font-size: 1rem;
+  line-height: 3rem;
+  color: rgba(139, 0, 0, 0.3);
+  letter-spacing: 2rem;
+  word-spacing: 3rem;
+  animation: shape-float 40s linear infinite;
+}
+
+@keyframes shape-float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* Floating Runes - Mystical symbols */
+.floating-runes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9991;
+  opacity: 0.08;
+}
+
+.floating-runes::before {
+  content: 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛈᛇᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ✧⚛࿃⚹⚻⚼❋✾✽❂';
+  position: absolute;
+  font-size: 1.5rem;
+  color: rgba(237, 237, 237, 0.2);
+  letter-spacing: 4rem;
+  word-spacing: 5rem;
+  animation: rune-drift 50s linear infinite;
+}
+
+@keyframes rune-drift {
+  0% { transform: translateX(100%) rotate(0deg); }
+  100% { transform: translateX(-100%) rotate(360deg); }
+}
+
+/* Floating Dust Motes - Fine particles */
+.floating-dust {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.2;
+  background-image: 
+    radial-gradient(1px 1px at 10% 20%, rgba(237, 237, 237, 0.4), transparent),
+    radial-gradient(1px 1px at 25% 35%, rgba(139, 0, 0, 0.3), transparent),
+    radial-gradient(1px 1px at 40% 55%, rgba(237, 237, 237, 0.3), transparent),
+    radial-gradient(1px 1px at 55% 25%, rgba(139, 0, 0, 0.4), transparent),
+    radial-gradient(1px 1px at 70% 45%, rgba(237, 237, 237, 0.35), transparent),
+    radial-gradient(1px 1px at 85% 65%, rgba(139, 0, 0, 0.3), transparent),
+    radial-gradient(1px 1px at 15% 75%, rgba(237, 237, 237, 0.3), transparent),
+    radial-gradient(1px 1px at 35% 85%, rgba(139, 0, 0, 0.35), transparent),
+    radial-gradient(1px 1px at 60% 10%, rgba(237, 237, 237, 0.4), transparent),
+    radial-gradient(1px 1px at 80% 80%, rgba(139, 0, 0, 0.3), transparent),
+    radial-gradient(1px 1px at 5% 50%, rgba(237, 237, 237, 0.3), transparent),
+    radial-gradient(1px 1px at 45% 70%, rgba(139, 0, 0, 0.35), transparent),
+    radial-gradient(1px 1px at 65% 30%, rgba(237, 237, 237, 0.35), transparent),
+    radial-gradient(1px 1px at 90% 15%, rgba(139, 0, 0, 0.3), transparent),
+    radial-gradient(1px 1px at 20% 60%, rgba(237, 237, 237, 0.3), transparent);
+  animation: dust-wander 45s ease-in-out infinite;
+}
+
+@keyframes dust-wander {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1); 
+  }
+  25% { 
+    transform: translate(20px, -15px) scale(1.1); 
+  }
+  50% { 
+    transform: translate(-15px, 10px) scale(0.9); 
+  }
+  75% { 
+    transform: translate(10px, 20px) scale(1.05); 
+  }
+}
+
+/* Floating Orbs - Soft glowing circles */
+.floating-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9989;
+}
+
+.floating-orbs::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(139, 0, 0, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 10%;
+  left: 5%;
+  animation: orb-float-1 25s ease-in-out infinite;
+}
+
+.floating-orbs::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(59, 0, 0, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 60%;
+  right: 10%;
+  animation: orb-float-2 30s ease-in-out infinite;
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  33% { 
+    transform: translate(50px, -30px) scale(1.2);
+    opacity: 0.5;
+  }
+  66% { 
+    transform: translate(-30px, 20px) scale(0.8);
+    opacity: 0.4;
+  }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1);
+    opacity: 0.25;
+  }
+  33% { 
+    transform: translate(-40px, 40px) scale(1.1);
+    opacity: 0.4;
+  }
+  66% { 
+    transform: translate(30px, -25px) scale(0.9);
+    opacity: 0.35;
+  }
+}
+
+/* Floating Sparks - Quick flickering particles */
+.floating-sparks {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9988;
+  overflow: hidden;
+}
+
+.floating-sparks span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: rgba(255, 200, 150, 0.5);
+  border-radius: 50%;
+  animation: spark-flicker 3s ease-in-out infinite;
+}
+
+.floating-sparks span:nth-child(1) { left: 15%; top: 20%; animation-delay: 0s; }
+.floating-sparks span:nth-child(2) { left: 30%; top: 45%; animation-delay: 0.5s; }
+.floating-sparks span:nth-child(3) { left: 50%; top: 15%; animation-delay: 1s; }
+.floating-sparks span:nth-child(4) { left: 70%; top: 55%; animation-delay: 0.3s; }
+.floating-sparks span:nth-child(5) { left: 85%; top: 30%; animation-delay: 0.8s; }
+.floating-sparks span:nth-child(6) { left: 20%; top: 70%; animation-delay: 1.2s; }
+.floating-sparks span:nth-child(7) { left: 45%; top: 85%; animation-delay: 0.6s; }
+.floating-sparks span:nth-child(8) { left: 65%; top: 25%; animation-delay: 1.5s; }
+.floating-sparks span:nth-child(9) { left: 90%; top: 60%; animation-delay: 0.4s; }
+.floating-sparks span:nth-child(10) { left: 10%; top: 50%; animation-delay: 0.9s; }
+
+@keyframes spark-flicker {
+  0%, 100% { 
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% { 
+    opacity: 0.6;
+    transform: scale(1.5);
+  }
+  75% { 
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+/* ============================================
+   BACKGROUND IMAGES FOR PAGES
+   ============================================ */
+
+/* Background Image Container - Optimized with will-change */
+.bg-image-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  will-change: transform;
+}
+
+/* Background Image with overlay */
+.bg-image-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bg-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+  transform: scale(1.05);
+}
+
+/* Dark overlay for better text readability */
+.bg-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.85) 0%,
+    rgba(5, 5, 5, 0.7) 50%,
+    rgba(5, 5, 5, 0.85) 100%
+  );
+}
+
+/* Reduced motion variant for performance */
+@media (prefers-reduced-motion: reduce) {
+  .floating-embers,
+  .floating-shapes,
+  .floating-runes,
+  .floating-dust,
+  .floating-orbs,
+  .floating-sparks,
+  .dark-particles {
+    display: none;
+  }
+}
+
+/* Gothic Fog - Static (no movement to prevent shaking) */
+.gothic-fog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
   pointer-events: none;
   z-index: 9994;
   opacity: 0.1;

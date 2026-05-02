@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import bgImage3 from '../assets/background/3 1.png';
 
 const pricingTiers = [
   {
@@ -69,12 +70,24 @@ const additionalServices = [
 
 const PricesPage = () => {
   return (
-    <div className="relative min-h-screen bg-pure-black overflow-hidden">
-      {/* Background Effects */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="smoke-overlay" />
-        <div className="dragon-pattern-overlay" />
-        <div className="noise-texture" />
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background Image */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-image-wrapper">
+          <img 
+            src={bgImage3} 
+            alt="Background" 
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="bg-image-overlay" />
+      </div>
+
+      {/* Atmospheric Effects - Reduced for performance */}
+      <div className="fixed inset-0 pointer-events-none z-1">
+        <div className="grain-overlay" />
+        <div className="red-ambient" />
       </div>
 
       {/* Hero Section */}
@@ -98,7 +111,7 @@ const PricesPage = () => {
         </div>
       </section>
 
-      {/* Pricing Cards */}
+      {/* PricingCards */}
       <section className="relative z-10 px-6 pb-24">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -108,7 +121,7 @@ const PricesPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`relative bg-dark-charcoal/50 border ${
+                className={`relative bg-dark-charcoal/80 backdrop-blur-sm border ${
                   tier.popular ? 'border-neon-crimson' : 'border-blood-red/20'
                 } p-8 ${tier.popular ? 'transform scale-105' : ''}`}
               >
@@ -179,7 +192,7 @@ const PricesPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
@@ -195,9 +208,9 @@ const PricesPage = () => {
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ delay: index * 0.1 }}
-                className="flex items-center justify-between bg-dark-charcoal/50 border border-blood-red/20 p-6 hover:border-neon-crimson/50 transition-colors duration-300"
+                className="flex items-center justify-between bg-dark-charcoal/80 backdrop-blur-sm border border-blood-red/20 p-6 hover:border-neon-crimson/50 transition-colors duration-300"
               >
                 <div>
                   <h4 className="font-gothic text-lg font-semibold text-soft-white mb-1">
@@ -220,9 +233,9 @@ const PricesPage = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-r from-deep-crimson/20 to-blood-red/10 border border-blood-red/30 p-8 relative overflow-hidden"
+            className="bg-gradient-to-r from-deep-crimson/20 to-blood-red/10 border border-blood-red/30 p-8 relative overflow-hidden backdrop-blur-sm"
           >
             {/* Decorative Elements */}
             <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-neon-crimson/30" />
@@ -261,7 +274,7 @@ const PricesPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-gothic text-3xl md:text-4xl font-bold text-soft-white mb-6">

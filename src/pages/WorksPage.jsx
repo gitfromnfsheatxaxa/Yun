@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import bgImage2 from '../assets/background/2 1.png';
 
 const works = [
   {
@@ -13,77 +14,77 @@ const works = [
     id: 2,
     title: 'Oni Demon Mask',
     category: 'Japanese',
-    image: 'https://images.unsplash.com/photo-1618331835717-801e976710b2?w=600&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Chest piece with fierce oni mask design',
   },
   {
     id: 3,
     title: 'Gothic Cathedral',
     category: 'Gothic',
-    image: 'https://images.unsplash.com/photo-1590246294723-1b6d53b3d8a7?w=600&h=700&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Arm sleeve with cathedral architecture',
   },
   {
     id: 4,
     title: 'Full Sleeve Masterpiece',
     category: 'Full Sleeve',
-    image: 'https://images.unsplash.com/photo-1565457088505-6b5b8f8f8f8f?w=600&h=800&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Complete sleeve combining dragon and samurai',
   },
   {
     id: 5,
     title: 'Koi Fish Flow',
     category: 'Japanese',
-    image: 'https://images.unsplash.com/photo-1579782500055-95d8a0da8b6a?w=600&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Leg piece with flowing koi fish',
   },
   {
     id: 6,
     title: 'Sacred Geometry',
     category: 'Blackwork',
-    image: 'https://images.unsplash.com/photo-1562962230-16e4623d36e6?w=600&h=700&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Geometric patterns with symbolic meaning',
   },
   {
     id: 7,
     title: 'Phoenix Rising',
     category: 'Dragon',
-    image: 'https://images.unsplash.com/photo-1598371839912-1604ca6ec09e?w=600&h=700&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Back piece with phoenix and dragon clash',
   },
   {
     id: 8,
     title: 'Samurai Warrior',
     category: 'Japanese',
-    image: 'https://images.unsplash.com/photo-1611593344570-83c6d78abd24?w=600&h=800&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Chest piece honoring bushido code',
   },
   {
     id: 9,
     title: 'Skull Gothic',
     category: 'Gothic',
-    image: 'https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=600&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Shoulder piece with ornate skull design',
   },
   {
     id: 10,
     title: 'Tribal Symbols',
     category: 'Symbols',
-    image: 'https://images.unsplash.com/photo-1560707303-4e98035872bf?w=600&h=700&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Forearm band with ancient symbols',
   },
   {
     id: 11,
     title: 'Custom Portrait',
     category: 'Custom',
-    image: 'https://images.unsplash.com/photo-1582239474038-4e60d9457fd5?w=600&h=800&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Realistic portrait with gothic elements',
   },
   {
     id: 12,
     title: 'Geometric Blackwork',
     category: 'Blackwork',
-    image: 'https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
     description: 'Abstract geometric patterns',
   },
 ];
@@ -99,12 +100,24 @@ const WorksPage = () => {
     : works.filter(work => work.category === activeCategory);
 
   return (
-    <div className="relative min-h-screen bg-pure-black overflow-hidden">
-      {/* Background Effects */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="smoke-overlay" />
-        <div className="dragon-pattern-overlay" />
-        <div className="noise-texture" />
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background Image */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-image-wrapper">
+          <img 
+            src={bgImage2} 
+            alt="Background" 
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="bg-image-overlay" />
+      </div>
+
+      {/* Atmospheric Effects - Reduced for performance */}
+      <div className="fixed inset-0 pointer-events-none z-1">
+        <div className="grain-overlay" />
+        <div className="red-ambient" />
       </div>
 
       {/* Hero Section */}
@@ -144,7 +157,7 @@ const WorksPage = () => {
                 className={`px-6 py-3 font-gothic text-sm tracking-wider transition-all duration-300 ${
                   activeCategory === category
                     ? 'bg-gradient-to-r from-blood-red to-neon-crimson text-white'
-                    : 'bg-dark-charcoal text-soft-white/60 border border-blood-red/20 hover:border-neon-crimson/50 hover:text-neon-crimson'
+                    : 'bg-dark-charcoal/80 backdrop-blur-sm text-soft-white/60 border border-blood-red/20 hover:border-neon-crimson/50 hover:text-neon-crimson'
                 }`}
               >
                 {category.toUpperCase()}
@@ -180,6 +193,7 @@ const WorksPage = () => {
                     <img
                       src={work.image}
                       alt={work.title}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-pure-black via-transparent to-transparent opacity-80" />
@@ -262,12 +276,13 @@ const WorksPage = () => {
                 <img
                   src={selectedWork.image}
                   alt={selectedWork.title}
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </div>
 
               {/* Info */}
-              <div className="p-8 bg-dark-charcoal/50 border-t border-blood-red/20">
+              <div className="p-8 bg-dark-charcoal/50 border-t border-blood-red/20 backdrop-blur-sm">
                 <span className="text-blood-red text-xs tracking-widest mb-2 block">
                   {selectedWork.category.toUpperCase()}
                 </span>
@@ -289,7 +304,7 @@ const WorksPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-gothic text-3xl md:text-4xl font-bold text-soft-white mb-6">

@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import bgImage7 from '../assets/background/7 1.png';
 
 const testimonials = [
   {
@@ -7,7 +8,7 @@ const testimonials = [
     name: 'Kenji M.',
     location: 'Tokyo, Japan',
     quote: 'The most incredible tattoo experience of my life. The attention to detail and the artistic vision transformed my idea into something beyond my imagination.',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
+    avatar: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=100&h=100&fit=crop',
     tattoo: 'Full Sleeve Dragon',
   },
   {
@@ -15,7 +16,7 @@ const testimonials = [
     name: 'Sarah K.',
     location: 'Los Angeles, USA',
     quote: 'Painful but worth every second. The artist understood my vision perfectly and created a piece that tells my story in ways I never imagined possible.',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
+    avatar: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=100&h=100&fit=crop',
     tattoo: 'Oni Mask Back Piece',
   },
   {
@@ -23,7 +24,7 @@ const testimonials = [
     name: 'Marcus R.',
     location: 'Berlin, Germany',
     quote: 'A true master of the craft. The gothic elements mixed with Japanese tradition created something truly unique. I will always treasure this piece.',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop',
+    avatar: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=100&h=100&fit=crop',
     tattoo: 'Gothic Blackwork Chest',
   },
 ];
@@ -40,16 +41,17 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="relative py-32 px-6 bg-pure-black overflow-hidden">
-      {/* Atmospheric Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-pure-black via-secondary-black to-pure-black" />
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-deep-red rounded-full blur-[120px]" />
+    <section className="relative py-32 px-6 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img 
+          src={bgImage7} 
+          alt="Background" 
+          loading="lazy"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-pure-black/85 via-pure-black/60 to-pure-black/85" />
       </div>
-
-      {/* Grain & Fog Overlays */}
-      <div className="absolute inset-0 grain-overlay opacity-20" />
-      <div className="absolute inset-0 gothic-fog" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Section Header */}
@@ -57,7 +59,7 @@ const Testimonials = () => {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
           <span className="text-neon-red text-[0.75rem] tracking-[0.4em] mb-6 block font-serif uppercase">
@@ -80,7 +82,7 @@ const Testimonials = () => {
               transition={{ duration: 0.5 }}
               className="absolute inset-0"
             >
-              <div className="bg-glass-strong border border-neon-red/20 p-8 md:p-12 relative overflow-hidden">
+              <div className="bg-glass-strong border border-neon-red/20 p-8 md:p-12 relative overflow-hidden backdrop-blur-sm">
                 {/* Decorative Corners */}
                 <div className="decorative-corner top-left" />
                 <div className="decorative-corner top-right" />
@@ -102,9 +104,9 @@ const Testimonials = () => {
                       <img
                         src={testimonials[activeIndex].avatar}
                         alt={testimonials[activeIndex].name}
+                        loading="lazy"
                         className="w-16 h-16 rounded-full border border-neon-red/50 object-cover"
                       />
-                      <div className="absolute inset-0 rounded-full border border-neon-red/30 animate-pulse-slow" />
                     </div>
                     <div className="text-left">
                       <h4 className="font-gothic text-soft-white font-semibold text-lg">
@@ -124,7 +126,7 @@ const Testimonials = () => {
         <div className="flex items-center justify-center space-x-8 mt-12">
           <button
             onClick={prevTestimonial}
-            className="w-12 h-12 border border-neon-red/30 flex items-center justify-center text-neon-red hover:bg-deep-red/20 hover:border-neon-red/60 transition-all duration-500"
+            className="w-12 h-12 border border-neon-red/30 flex items-center justify-center text-neon-red hover:bg-deep-red/20 hover:border-neon-red/60 transition-all duration-300"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
@@ -137,7 +139,7 @@ const Testimonials = () => {
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`transition-all duration-500 ${
+                className={`transition-all duration-300 ${
                   index === activeIndex ? 'w-8 h-[2px] bg-neon-red' : 'w-3 h-[2px] bg-neon-red/30'
                 }`}
               />
@@ -146,7 +148,7 @@ const Testimonials = () => {
 
           <button
             onClick={nextTestimonial}
-            className="w-12 h-12 border border-neon-red/30 flex items-center justify-center text-neon-red hover:bg-deep-red/20 hover:border-neon-red/60 transition-all duration-500"
+            className="w-12 h-12 border border-neon-red/30 flex items-center justify-center text-neon-red hover:bg-deep-red/20 hover:border-neon-red/60 transition-all duration-300"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />

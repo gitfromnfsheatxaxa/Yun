@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import bgImage4 from '../assets/background/4 1.png';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,6 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
@@ -78,24 +78,24 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="relative min-h-screen bg-pure-black overflow-hidden">
-      {/* Background Effects */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="smoke-overlay" />
-        <div className="dragon-pattern-overlay" />
-        <div className="noise-texture" />
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background Image */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-image-wrapper">
+          <img 
+            src={bgImage4} 
+            alt="Background" 
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="bg-image-overlay" />
       </div>
 
-      {/* Dragon Watermark Background */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <svg viewBox="0 0 1440 800" className="w-full h-full">
-          <path
-            d="M100,400 Q300,100 500,350 Q700,500 900,300 Q1100,150 1350,400"
-            fill="none"
-            stroke="#8B0000"
-            strokeWidth="2"
-          />
-        </svg>
+      {/* Atmospheric Effects - Reduced for performance */}
+      <div className="fixed inset-0 pointer-events-none z-1">
+        <div className="grain-overlay" />
+        <div className="red-ambient" />
       </div>
 
       {/* Hero Section */}
@@ -128,7 +128,7 @@ const ContactPage = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-dark-charcoal/50 border border-blood-red/20 p-8 relative overflow-hidden"
+              className="bg-dark-charcoal/80 backdrop-blur-sm border border-blood-red/20 p-8 relative overflow-hidden"
             >
               {/* Decorative Corners */}
               <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-neon-crimson/30" />
@@ -182,7 +182,7 @@ const ContactPage = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full bg-pure-black border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
+                        className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
                         placeholder="Your name"
                       />
                     </div>
@@ -198,7 +198,7 @@ const ContactPage = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full bg-pure-black border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
+                        className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -215,7 +215,7 @@ const ContactPage = () => {
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="w-full bg-pure-black border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all resize-none"
+                      className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all resize-none"
                       placeholder="Describe your tattoo idea, style preferences, and any specific elements you want..."
                     />
                   </div>
@@ -231,7 +231,7 @@ const ContactPage = () => {
                         value={formData.placement}
                         onChange={handleChange}
                         required
-                        className="w-full bg-pure-black border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
+                        className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
                       >
                         <option value="">Select placement</option>
                         <option value="arm">Arm / Sleeve</option>
@@ -254,7 +254,7 @@ const ContactPage = () => {
                         name="preferredDate"
                         value={formData.preferredDate}
                         onChange={handleChange}
-                        className="w-full bg-pure-black border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
+                        className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
                       />
                     </div>
                   </div>
@@ -268,7 +268,7 @@ const ContactPage = () => {
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
-                      className="w-full bg-pure-black border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
+                      className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
                     >
                       <option value="">Select budget</option>
                       <option value="150-300">$150 - $300</option>
@@ -320,7 +320,7 @@ const ContactPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 + index * 0.1 }}
-                    className="flex items-start space-x-4 bg-dark-charcoal/50 border border-blood-red/20 p-6 hover:border-neon-crimson/50 transition-colors duration-300"
+                    className="flex items-start space-x-4 bg-dark-charcoal/80 backdrop-blur-sm border border-blood-red/20 p-6 hover:border-neon-crimson/50 transition-colors duration-300"
                   >
                     <div className="flex-shrink-0 w-12 h-12 bg-blood-red/20 border border-blood-red/30 flex items-center justify-center text-neon-crimson">
                       {info.icon}
@@ -334,7 +334,7 @@ const ContactPage = () => {
               </div>
 
               {/* Social Links */}
-              <div className="bg-dark-charcoal/50 border border-blood-red/20 p-8">
+              <div className="bg-dark-charcoal/80 backdrop-blur-sm border border-blood-red/20 p-8">
                 <h4 className="font-gothic text-white font-semibold mb-6">FOLLOW OUR WORK</h4>
                 <div className="flex items-center space-x-4">
                   {socialLinks.map((social, index) => (
@@ -345,7 +345,7 @@ const ContactPage = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.8 + index * 0.1 }}
                       whileHover={{ scale: 1.1 }}
-                      className="w-12 h-12 bg-pure-black border border-blood-red/30 flex items-center justify-center text-soft-white/60 hover:text-neon-crimson hover:border-neon-crimson transition-all duration-300"
+                      className="w-12 h-12 bg-pure-black/80 border border-blood-red/30 flex items-center justify-center text-soft-white/60 hover:text-neon-crimson hover:border-neon-crimson transition-all duration-300"
                       aria-label={social.name}
                     >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -360,9 +360,9 @@ const ContactPage = () => {
               </div>
 
               {/* Map Placeholder */}
-              <div className="bg-dark-charcoal/50 border border-blood-red/20 p-8">
+              <div className="bg-dark-charcoal/80 backdrop-blur-sm border border-blood-red/20 p-8">
                 <h4 className="font-gothic text-white font-semibold mb-4">STUDIO LOCATION</h4>
-                <div className="aspect-video bg-pure-black border border-blood-red/20 flex items-center justify-center relative overflow-hidden">
+                <div className="aspect-video bg-pure-black/80 backdrop-blur-sm border border-blood-red/20 flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 opacity-30">
                     <div className="w-full h-full bg-gradient-to-br from-blood-red/20 to-transparent" />
                   </div>
