@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import bgImage2 from '../assets/background/2 1.png';
+import bgImage2 from '../assets/background/10 1.png';
 
 const works = [
   {

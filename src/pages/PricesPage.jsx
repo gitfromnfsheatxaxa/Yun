@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import bgImage3 from '../assets/background/3 1.png';
+import bgImage3 from '../assets/background/6 1.png';
 
 const pricingTiers = [
   {

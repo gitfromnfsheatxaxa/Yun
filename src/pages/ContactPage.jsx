@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import bgImage4 from '../assets/background/4 1.png';
+import bgImage4 from '../assets/background/5 1.png';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({

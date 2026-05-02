@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import bgImage7 from '../assets/background/7 1.png';
+import bgImage7 from '../assets/background/6 1.png';
 
 const testimonials = [
   {

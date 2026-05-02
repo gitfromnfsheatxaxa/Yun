@@ -86,16 +86,8 @@ const FeaturedWorks = () => {
         >
           {/* Top Place Frame around header */}
           <div className="relative inline-block mb-4">
-            <img 
-              src={topPlace} 
-              alt="Decorative Frame" 
-              className="w-96 h-32 object-contain"
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-neon-red text-[0.75rem] tracking-[0.4em] font-serif uppercase">
-                Portfolio
-              </span>
-            </div>
+
+
           </div>
           <h2 className="font-gothic text-4xl md:text-6xl font-bold text-soft-white mb-2">
             Featured <span className="text-gradient-crimson">Works</span>

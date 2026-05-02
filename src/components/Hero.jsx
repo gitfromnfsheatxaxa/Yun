@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import bgImage1 from '../assets/background/1 1.png';
+import bgImage1 from '../assets/background/image.png';
 
 const Hero = () => {
   return (
