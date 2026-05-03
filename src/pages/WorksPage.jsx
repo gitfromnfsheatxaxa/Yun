@@ -7,110 +7,115 @@ import bgImage2 from '../assets/background/10 1.png';
 const WorksPage = () => {
   const { t } = useTranslation();
   const { langNavigate } = useLanguageRouter();
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState('all');
   const [selectedWork, setSelectedWork] = useState(null);
 
   const works = [
     {
       id: 1,
       title: 'Crimson Dragon',
-      category: t('works.categories.dragon'),
+      category: 'dragon',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Full back piece featuring traditional Japanese dragon',
     },
     {
       id: 2,
       title: 'Oni Demon Mask',
-      category: t('works.categories.japanese'),
+      category: 'japanese',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Chest piece with fierce oni mask design',
     },
     {
       id: 3,
       title: 'Gothic Cathedral',
-      category: t('works.categories.gothic'),
+      category: 'gothic',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Arm sleeve with cathedral architecture',
     },
     {
       id: 4,
       title: 'Full Sleeve Masterpiece',
-      category: t('works.categories.fullSleeve'),
+      category: 'fullSleeve',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Complete sleeve combining dragon and samurai',
     },
     {
       id: 5,
       title: 'Koi Fish Flow',
-      category: t('works.categories.japanese'),
+      category: 'japanese',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Leg piece with flowing koi fish',
     },
     {
       id: 6,
       title: 'Sacred Geometry',
-      category: t('works.categories.symbols'),
+      category: 'symbols',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Geometric patterns with symbolic meaning',
     },
     {
       id: 7,
       title: 'Phoenix Rising',
-      category: t('works.categories.dragon'),
+      category: 'dragon',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Back piece with phoenix and dragon clash',
     },
     {
       id: 8,
       title: 'Samurai Warrior',
-      category: t('works.categories.japanese'),
+      category: 'japanese',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Chest piece honoring bushido code',
     },
     {
       id: 9,
       title: 'Skull Gothic',
-      category: t('works.categories.gothic'),
+      category: 'gothic',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Shoulder piece with ornate skull design',
     },
     {
       id: 10,
       title: 'Tribal Symbols',
-      category: t('works.categories.symbols'),
+      category: 'symbols',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Forearm band with ancient symbols',
     },
     {
       id: 11,
       title: 'Custom Portrait',
-      category: t('works.categories.custom'),
+      category: 'custom',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Realistic portrait with gothic elements',
     },
     {
       id: 12,
       title: 'Geometric Blackwork',
-      category: t('works.categories.blackwork'),
+      category: 'blackwork',
       image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
       description: 'Abstract geometric patterns',
     },
   ];
 
   const categories = [
-    t('works.categories.all'),
-    t('works.categories.dragon'),
-    t('works.categories.japanese'),
-    t('works.categories.gothic'),
-    t('works.categories.blackwork'),
-    t('works.categories.symbols'),
-    t('works.categories.fullSleeve'),
-    t('works.categories.custom'),
+    { id: 'all', label: t('works.categories.all') },
+    { id: 'dragon', label: t('works.categories.dragon') },
+    { id: 'japanese', label: t('works.categories.japanese') },
+    { id: 'gothic', label: t('works.categories.gothic') },
+    { id: 'blackwork', label: t('works.categories.blackwork') },
+    { id: 'symbols', label: t('works.categories.symbols') },
+    { id: 'fullSleeve', label: t('works.categories.fullSleeve') },
+    { id: 'custom', label: t('works.categories.custom') },
   ];
 
-  const filteredWorks = activeCategory === t('works.categories.all') 
+  const filteredWorks = activeCategory === 'all' 
     ? works 
     : works.filter(work => work.category === activeCategory);
+
+  const getCategoryLabel = (categoryId) => {
+    const category = categories.find(c => c.id === categoryId);
+    return category ? category.label : categoryId;
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -162,15 +167,15 @@ const WorksPage = () => {
           >
             {categories.map((category) => (
               <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
                 className={`px-6 py-3 font-gothic text-sm tracking-wider transition-all duration-300 ${
-                  activeCategory === category
+                  activeCategory === category.id
                     ? 'bg-gradient-to-r from-blood-red to-neon-crimson text-white'
                     : 'bg-dark-charcoal/80 backdrop-blur-sm text-soft-white/60 border border-blood-red/20 hover:border-neon-crimson/50 hover:text-neon-crimson'
                 }`}
               >
-                {category.toUpperCase()}
+                {category.label.toUpperCase()}
               </button>
             ))}
           </motion.div>
@@ -222,7 +227,7 @@ const WorksPage = () => {
                       className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
                     >
                       <span className="text-blood-red text-xs tracking-widest mb-2 block">
-                        {work.category.toUpperCase()}
+                        {getCategoryLabel(work.category).toUpperCase()}
                       </span>
                       <h3 className="font-gothic text-lg font-bold text-soft-white mb-1">
                         {work.title}
@@ -294,7 +299,7 @@ const WorksPage = () => {
               {/* Info */}
               <div className="p-8 bg-dark-charcoal/50 border-t border-blood-red/20 backdrop-blur-sm">
                 <span className="text-blood-red text-xs tracking-widest mb-2 block">
-                  {selectedWork.category.toUpperCase()}
+                  {getCategoryLabel(selectedWork.category).toUpperCase()}
                 </span>
                 <h2 className="font-gothic text-3xl font-bold text-soft-white mb-4">
                   {selectedWork.title}
