@@ -201,11 +201,11 @@ const WorksPage = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
-                  className="group relative aspect-[3/4] overflow-hidden bg-dark-charcoal cursor-pointer p-1"
+                  className="group relative aspect-[3/4] overflow-hidden bg-dark-charcoal cursor-pointer"
                   onClick={() => setSelectedWork(work)}
                 >
                   {/* Border Image */}
-                  <div className="absolute inset-0 pointer-events-none" 
+                  <div className="absolute inset-0 pointer-events-none z-20" 
                        style={{
                          backgroundImage: `url(${borderImage})`,
                          backgroundSize: '100% 100%',
@@ -215,8 +215,8 @@ const WorksPage = () => {
                        }} 
                   />
                   
-                  {/* Image */}
-                  <div className="relative h-full w-full overflow-hidden">
+                  {/* Image Container with padding to stay inside border */}
+                  <div className="relative h-full w-full overflow-hidden p-3">
                     <img
                       src={work.image}
                       alt={work.title}
