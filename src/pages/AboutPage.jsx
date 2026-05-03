@@ -110,40 +110,62 @@ const AboutPage = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="relative z-10 py-24 px-6">
+      <section className="relative z-10 py-24 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <span className="text-blood-red text-sm tracking-widest mb-4 block">{t('about.journey.title')}</span>
-            <h2 className="font-gothic text-4xl md:text-5xl font-bold text-soft-white mb-4" dangerouslySetInnerHTML={{ __html: t('about.journey.heading') }} />
-            <div className="w-24 h-0.5 bg-gradient-to-r from-blood-red to-neon-crimson mx-auto" />
+            <span className="text-blood-red text-xs sm:text-sm tracking-widest mb-4 block">{t('about.journey.title')}</span>
+            <h2 className="font-gothic text-3xl sm:text-4xl md:text-5xl font-bold text-soft-white mb-4" dangerouslySetInnerHTML={{ __html: t('about.journey.heading') }} />
+            <div className="w-20 h-0.5 bg-gradient-to-r from-blood-red to-neon-crimson mx-auto" />
           </motion.div>
 
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blood-red via-neon-crimson to-blood-red opacity-30" />
+            {/* Timeline Line - Hidden on mobile, shown on tablet+ */}
+            <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blood-red via-neon-crimson to-blood-red opacity-30" />
+            
+            {/* Mobile Timeline Line (vertical, centered) */}
+            <div className="sm:hidden absolute left-4 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blood-red via-neon-crimson to-blood-red opacity-30" />
 
             {timeline.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`flex items-center mb-12 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                className="relative mb-8 sm:mb-12"
               >
-                <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'}`}>
-                  <div className="bg-dark-charcoal/80 border border-blood-red/20 p-6 relative backdrop-blur-sm">
-                    <div className="absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-neon-crimson rounded-full" 
-                         style={{ [index % 2 === 0 ? 'right' : 'left']: '-28px' }} />
-                    <span className="text-blood-red font-gothic text-2xl font-bold">{item.year}</span>
-                    <h3 className="font-gothic text-xl font-semibold text-soft-white mt-2">{item.title}</h3>
-                    <p className="text-soft-white/60 font-body text-sm mt-2">{item.desc}</p>
+                {/* Mobile Layout - Single column */}
+                <div className="sm:hidden flex items-start gap-4">
+                  <div className="flex-shrink-0 w-3 h-3 bg-neon-crimson rounded-full mt-2 relative">
+                    <div className="absolute inset-0 bg-neon-crimson rounded-full animate-ping opacity-25" />
+                  </div>
+                  <div className="flex-1 bg-dark-charcoal/80 border border-blood-red/20 p-4 sm:p-6 backdrop-blur-sm rounded-lg">
+                    <span className="text-blood-red font-gothic text-xl sm:text-2xl font-bold">{item.year}</span>
+                    <h3 className="font-gothic text-base sm:text-lg font-semibold text-soft-white mt-1 sm:mt-2">{item.title}</h3>
+                    <p className="text-soft-white/60 font-body text-sm mt-2 leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+
+                {/* Desktop Layout - Alternating sides */}
+                <div className="hidden sm:block">
+                  <div className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                    <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'}`}>
+                      <div className="bg-dark-charcoal/80 border border-blood-red/20 p-6 relative backdrop-blur-sm rounded-lg">
+                        <div className="absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-neon-crimson rounded-full" 
+                             style={{ [index % 2 === 0 ? 'right' : 'left']: '-28px' }} />
+                        <div className="absolute top-1/2 transform -translate-y-1/2 w-3 h-3 bg-neon-crimson rounded-full animate-ping opacity-25" 
+                             style={{ [index % 2 === 0 ? 'right' : 'left']: '-28px' }} />
+                        <span className="text-blood-red font-gothic text-2xl font-bold">{item.year}</span>
+                        <h3 className="font-gothic text-xl font-semibold text-soft-white mt-2">{item.title}</h3>
+                        <p className="text-soft-white/60 font-body text-sm mt-2">{item.desc}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
