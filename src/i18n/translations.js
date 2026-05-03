@@ -204,7 +204,7 @@ export const translations = {
         form: {
           title: 'ЗАПРОС НА ЗАПИСЬ',
           name: 'Полное имя *',
-          email: 'Email адрес *',
+          phone: 'Телефон / Telegram *',
           tattooIdea: 'Идея татуировки / Описание *',
           placement: 'Расположение на теле *',
           preferredDate: 'Предпочтительная дата',
@@ -471,7 +471,7 @@ export const translations = {
         form: {
           title: 'BOOKING REQUEST',
           name: 'Full Name *',
-          email: 'Email Address *',
+          phone: 'Phone / Telegram *',
           tattooIdea: 'Tattoo Idea / Description *',
           placement: 'Body Placement *',
           preferredDate: 'Preferred Date',
@@ -738,7 +738,7 @@ export const translations = {
         form: {
           title: 'YAZILISH SOROVI',
           name: 'To\'liq Ism *',
-          email: 'Email Manzil *',
+          phone: 'Telefon / Telegram *',
           tattooIdea: 'Tattoo G\'oyasi / Tavsif *',
           placement: 'Tana Joylashuvi *',
           preferredDate: 'Afzal Kun',

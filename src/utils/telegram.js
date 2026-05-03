@@ -10,7 +10,7 @@ const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/send
  */
 export const sendToTelegram = async (formData) => {
   try {
-    const { name, email, tattooIdea, placement, preferredDate, budget } = formData;
+    const { name, phone, tattooIdea, placement, preferredDate, budget } = formData;
     
     // Format the message with emojis and formatting
     const message = `
@@ -18,7 +18,7 @@ export const sendToTelegram = async (formData) => {
 
 ━━━━━━━━━━━━━━━━━━━━
 👤 <b>Name:</b> ${name}
-📧 <b>Email:</b> ${email}
+📱 <b>Phone/Telegram:</b> ${phone}
 ━━━━━━━━━━━━━━━━━━━━
 
 📝 <b>Tattoo Idea/Description:</b>

@@ -8,7 +8,7 @@ const ContactPage = () => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    phone: '',
     tattooIdea: '',
     placement: '',
     preferredDate: '',
@@ -35,7 +35,7 @@ const ContactPage = () => {
         setSubmitted(true);
         setFormData({
           name: '',
-          email: '',
+          phone: '',
           tattooIdea: '',
           placement: '',
           preferredDate: '',
@@ -100,9 +100,9 @@ const ContactPage = () => {
       {/* Background Image */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-image-wrapper">
-          <img 
-            src={bgImage4} 
-            alt="Background" 
+          <img
+            src={bgImage4}
+            alt="Background"
             loading="lazy"
             className="w-full h-full object-cover"
           />
@@ -175,7 +175,7 @@ const ContactPage = () => {
                   <button
                     onClick={() => {
                       setSubmitted(false);
-                      setFormData({ name: '', email: '', tattooIdea: '', placement: '', preferredDate: '', budget: '' });
+                      setFormData({ name: '', phone: '', tattooIdea: '', placement: '', preferredDate: '', budget: '' });
                     }}
                     className="text-neon-crimson hover:text-blood-red transition-colors font-body tracking-wider"
                   >
@@ -201,19 +201,19 @@ const ContactPage = () => {
                       />
                     </div>
 
-                    {/* Email */}
+                    {/* Phone / Telegram */}
                     <div>
                       <label className="block text-soft-white/60 text-sm font-body mb-2">
-                        {t('contact.form.email')}
+                        {t('contact.form.phone')}
                       </label>
                       <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
                         onChange={handleChange}
                         required
                         className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
-                        placeholder="your@email.com"
+                        placeholder="@telegram or +1234567890"
                       />
                     </div>
                   </div>
