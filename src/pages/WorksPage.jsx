@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { useLanguageRouter } from '../i18n/useLanguageRouter';
 
 // Assets
@@ -174,7 +174,7 @@ const WorksPage = () => {
                   onClick={() => setSelectedWork(work)}
                 >
                   {/* 1. Image Layer - Padded to fit inside the frame decorative edges */}
-                  <div className="absolute inset-0 p-12 z-10 overflow-hidden">
+                  <div className="absolute inset-0 p-12 z-100 overflow-hidden">
                     <img
                       src={work.image}
                       alt={work.title}
