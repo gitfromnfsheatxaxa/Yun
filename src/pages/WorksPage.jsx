@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'i18next';
 import { useLanguageRouter } from '../i18n/useLanguageRouter';
+
+// Assets
 import bgImage2 from '../assets/background/10 1.png';
 import borderImage from '../assets/decor/border.png';
 
@@ -109,8 +111,8 @@ const WorksPage = () => {
     { id: 'custom', label: t('works.categories.custom') },
   ];
 
-  const filteredWorks = activeCategory === 'all' 
-    ? works 
+  const filteredWorks = activeCategory === 'all'
+    ? works
     : works.filter(work => work.category === activeCategory);
 
   const getCategoryLabel = (categoryId) => {
@@ -119,236 +121,133 @@ const WorksPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Background Image */}
+    <div className="relative min-h-screen overflow-hidden bg-pure-black">
+      {/* Background Layer */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-image-wrapper">
-          <img 
-            src={bgImage2} 
-            alt="Background" 
-            loading="lazy"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="bg-image-overlay" />
-      </div>
-
-      {/* Atmospheric Effects */}
-      <div className="fixed inset-0 pointer-events-none z-1">
-        <div className="grain-overlay" />
-        <div className="red-ambient" />
+        <img src={bgImage2} alt="Background" className="w-full h-full object-cover opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-pure-black via-transparent to-pure-black" />
       </div>
 
       {/* Hero Section */}
       <section className="relative z-10 py-32 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-blood-red text-sm tracking-widest mb-4 block">{t('works.hero.title')}</span>
-            <h1 className="font-gothic text-5xl md:text-7xl font-bold text-soft-white mb-6" dangerouslySetInnerHTML={{ __html: t('works.hero.heading') }} />
-            <div className="w-24 h-0.5 bg-gradient-to-r from-blood-red to-neon-crimson mx-auto mb-8" />
-            <p className="text-soft-white/60 font-body max-w-2xl mx-auto">
-              {t('works.hero.subtitle')}
-            </p>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <h1 className="font-gothic text-5xl md:text-7xl font-bold text-soft-white mb-6 uppercase tracking-tighter">
+              {t('works.hero.heading')}
+            </h1>
+            <div className="w-24 h-px bg-blood-red mx-auto mb-8" />
           </motion.div>
         </div>
       </section>
 
-      {/* Filter Section */}
+      {/* Filters */}
       <section className="relative z-10 px-6 pb-12">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-3 font-gothic text-sm tracking-wider transition-all duration-300 ${
-                  activeCategory === category.id
-                    ? 'bg-gradient-to-r from-blood-red to-neon-crimson text-white'
-                    : 'bg-dark-charcoal/80 backdrop-blur-sm text-soft-white/60 border border-blood-red/20 hover:border-neon-crimson/50 hover:text-neon-crimson'
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-3">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              className={`px-5 py-2 font-gothic text-[10px] tracking-[0.2em] transition-all border ${activeCategory === category.id
+                  ? 'bg-blood-red border-blood-red text-white'
+                  : 'bg-transparent text-soft-white/40 border-white/10 hover:border-blood-red/50 hover:text-soft-white'
                 }`}
-              >
-                {category.label.toUpperCase()}
-              </button>
-            ))}
-          </motion.div>
+            >
+              {category.label.toUpperCase()}
+            </button>
+          ))}
         </div>
       </section>
 
       {/* Gallery Grid */}
       <section className="relative z-10 px-6 pb-24">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ staggerChildren: 0.1 }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             <AnimatePresence mode='popLayout'>
               {filteredWorks.map((work) => (
                 <motion.div
                   key={work.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  className="group relative aspect-[3/4] overflow-hidden bg-dark-charcoal cursor-pointer"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="group relative aspect-[3/4] bg-pure-black cursor-pointer overflow-hidden"
                   onClick={() => setSelectedWork(work)}
                 >
-                  {/* Border Image */}
-                  <div className="absolute inset-0 pointer-events-none z-20" 
-                       style={{
-                         backgroundImage: `url(${borderImage})`,
-                         backgroundSize: '100% 100%',
-                         backgroundPosition: 'center',
-                         backgroundRepeat: 'no-repeat',
-                         opacity: 0.7,
-                       }} 
-                  />
-                  
-                  {/* Image Container with padding to stay inside border */}
-                  <div className="relative h-full w-full overflow-hidden p-8">
+                  {/* 1. Image Layer - Padded to fit inside the frame decorative edges */}
+                  <div className="absolute inset-0 p-12 z-10 overflow-hidden">
                     <img
                       src={work.image}
                       alt={work.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-pure-black via-transparent to-transparent opacity-80" />
                   </div>
 
-                  {/* Red Glow Border on Hover */}
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-neon-crimson transition-colors duration-300 pointer-events-none" />
+                  {/* 2. The Decorative Frame Overlay */}
+                  <div
+                    className="absolute inset-0 z-30 pointer-events-none"
+                    style={{
+                      backgroundImage: `url(${borderImage})`,
+                      backgroundSize: '100% 100%',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat',
+                    }}
+                  />
 
-                  {/* Content Overlay */}
-                  <div className="absolute inset-0 p-4 flex flex-col justify-end">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileHover={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
-                    >
-                      <span className="text-blood-red text-xs tracking-widest mb-2 block">
+                  {/* 3. Shadow/Vignette inside the frame */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-pure-black/90 via-transparent to-transparent z-20 pointer-events-none" />
+
+                  {/* 4. Text Content */}
+                  <div className="absolute inset-0 p-12 flex flex-col justify-end z-40">
+                    <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                      <span className="text-blood-red text-[9px] tracking-[0.3em] font-bold block mb-1">
                         {getCategoryLabel(work.category).toUpperCase()}
                       </span>
-                      <h3 className="font-gothic text-lg font-bold text-soft-white mb-1">
+                      <h3 className="font-gothic text-lg text-soft-white uppercase tracking-wider">
                         {work.title}
                       </h3>
-                      <p className="text-soft-white/50 text-xs line-clamp-1">{work.description}</p>
-                    </motion.div>
-                  </div>
-
-                  {/* View Icon */}
-                  <div className="absolute top-4 right-4 w-10 h-10 bg-pure-black/80 border border-blood-red/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg className="w-5 h-5 text-neon-crimson" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                    </svg>
+                    </div>
                   </div>
                 </motion.div>
               ))}
             </AnimatePresence>
-          </motion.div>
-
-          {filteredWorks.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-24"
-            >
-              <p className="text-soft-white/40 font-body text-lg">No works found in this category.</p>
-            </motion.div>
-          )}
+          </div>
         </div>
       </section>
 
-      {/* Modal Preview */}
+      {/* Simplified Modal */}
       <AnimatePresence>
         {selectedWork && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-pure-black/95 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-pure-black/95 backdrop-blur-md"
             onClick={() => setSelectedWork(null)}
           >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-5xl w-full max-h-[90vh] overflow-auto"
+            <div
+              className="relative max-w-4xl w-full flex flex-col md:flex-row bg-dark-charcoal border border-white/5 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
               <button
                 onClick={() => setSelectedWork(null)}
-                className="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center text-soft-white hover:text-neon-crimson transition-colors"
+                className="absolute top-4 right-4 text-soft-white/50 hover:text-white z-10"
               >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                ✕
               </button>
-
-              {/* Image */}
-              <div className="aspect-[4/3] bg-dark-charcoal">
-                <img
-                  src={selectedWork.image}
-                  alt={selectedWork.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover"
-                />
+              <div className="md:w-1/2">
+                <img src={selectedWork.image} className="w-full h-full object-cover" alt={selectedWork.title} />
               </div>
-
-              {/* Info */}
-              <div className="p-8 bg-dark-charcoal/50 border-t border-blood-red/20 backdrop-blur-sm">
-                <span className="text-blood-red text-xs tracking-widest mb-2 block">
-                  {getCategoryLabel(selectedWork.category).toUpperCase()}
-                </span>
-                <h2 className="font-gothic text-3xl font-bold text-soft-white mb-4">
-                  {selectedWork.title}
-                </h2>
-                <p className="text-soft-white/60 font-body leading-relaxed">
-                  {selectedWork.description}
-                </p>
+              <div className="md:w-1/2 p-10 flex flex-col justify-center">
+                <h2 className="font-gothic text-3xl text-soft-white mb-4 uppercase">{selectedWork.title}</h2>
+                <p className="text-soft-white/60 mb-8">{selectedWork.description}</p>
+                <button className="py-3 border border-blood-red text-blood-red hover:bg-blood-red hover:text-white transition-all uppercase text-xs tracking-widest">
+                  Inquire Now
+                </button>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* CTA Section */}
-      <section className="relative z-10 py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-gothic text-3xl md:text-4xl font-bold text-soft-white mb-6" dangerouslySetInnerHTML={{ __html: t('works.cta.heading') }} />
-            <p className="text-soft-white/60 font-body mb-8 max-w-xl mx-auto">
-              {t('works.cta.subtitle')}
-            </p>
-            <button
-              onClick={() => langNavigate('/contact')}
-              className="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-blood-red to-neon-crimson text-soft-white font-gothic tracking-widest hover:shadow-neon-red-strong transition-all duration-300"
-            >
-              <span>{t('works.cta.button')}</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </button>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 };
