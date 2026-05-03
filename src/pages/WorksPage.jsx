@@ -175,7 +175,7 @@ const WorksPage = () => {
                 >
                   {/* 1. The Decorative Frame Overlay (Parent Border) */}
                   <div
-                    className="absolute inset-0 z-30 pointer-events-none"
+                    className="absolute inset-0 z-10 pointer-events-none"
                     style={{
                       backgroundImage: `url(${borderImage})`,
                       backgroundSize: '100% 100%',
@@ -184,8 +184,8 @@ const WorksPage = () => {
                     }}
                   />
 
-                  {/* 2. Image Layer (Child - fits inside border) */}
-                  <div className="relative h-full w-full z-10">
+                  {/* 2. Image Layer (Child - smaller, fits inside border) */}
+                  <div className="absolute inset-0 m-8 z-20">
                     <img
                       src={work.image}
                       alt={work.title}
@@ -194,7 +194,7 @@ const WorksPage = () => {
                   </div>
 
                   {/* 3. Shadow/Vignette inside the frame */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-pure-black/90 via-transparent to-transparent z-20 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-pure-black/90 via-transparent to-transparent z-15 pointer-events-none" />
 
                   {/* 4. Text Content */}
                   <div className="absolute inset-0 flex flex-col justify-end z-40">
