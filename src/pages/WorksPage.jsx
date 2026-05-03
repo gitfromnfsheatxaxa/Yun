@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLanguageRouter } from '../i18n/useLanguageRouter';
 import bgImage2 from '../assets/background/10 1.png';
+import borderImage from '../assets/decor/border.png';
 
 const WorksPage = () => {
   const { t } = useTranslation();
@@ -186,7 +187,7 @@ const WorksPage = () => {
       <section className="relative z-10 px-6 pb-24">
         <div className="max-w-7xl mx-auto">
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ staggerChildren: 0.1 }}
@@ -200,11 +201,22 @@ const WorksPage = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
-                  className="group relative aspect-[3/4] overflow-hidden bg-dark-charcoal cursor-pointer"
+                  className="group relative aspect-[3/4] overflow-hidden bg-dark-charcoal cursor-pointer p-1"
                   onClick={() => setSelectedWork(work)}
                 >
+                  {/* Border Image */}
+                  <div className="absolute inset-0 pointer-events-none" 
+                       style={{
+                         backgroundImage: `url(${borderImage})`,
+                         backgroundSize: '100% 100%',
+                         backgroundPosition: 'center',
+                         backgroundRepeat: 'no-repeat',
+                         opacity: 0.7,
+                       }} 
+                  />
+                  
                   {/* Image */}
-                  <div className="absolute inset-0">
+                  <div className="relative h-full w-full overflow-hidden">
                     <img
                       src={work.image}
                       alt={work.title}
@@ -216,7 +228,6 @@ const WorksPage = () => {
 
                   {/* Red Glow Border on Hover */}
                   <div className="absolute inset-0 border-2 border-transparent group-hover:border-neon-crimson transition-colors duration-300 pointer-events-none" />
-                  <div className="absolute inset-0 shadow-neon-red opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                   {/* Content Overlay */}
                   <div className="absolute inset-0 p-4 flex flex-col justify-end">
