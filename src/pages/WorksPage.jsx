@@ -216,7 +216,7 @@ const WorksPage = () => {
                   />
                   
                   {/* Image Container with padding to stay inside border */}
-                  <div className="relative h-full w-full overflow-hidden p-3">
+                  <div className="relative h-full w-full overflow-hidden p-8">
                     <img
                       src={work.image}
                       alt={work.title}
