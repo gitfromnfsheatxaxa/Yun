@@ -185,7 +185,7 @@ const WorksPage = () => {
                   />
 
                   {/* 2. Image Layer (Child - smaller, fits inside border) */}
-                  <div className="absolute inset-0 m-8 z-20">
+                  <div className="absolute inset-0 m-16 z-20">
                     <img
                       src={work.image}
                       alt={work.title}
