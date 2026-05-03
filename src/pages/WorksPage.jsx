@@ -170,19 +170,10 @@ const WorksPage = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="group relative aspect-[3/4] bg-pure-black cursor-pointer overflow-hidden"
+                  className="group relative aspect-[3/4] bg-pure-black cursor-pointer overflow-hidden p-16"
                   onClick={() => setSelectedWork(work)}
                 >
-                  {/* 1. Image Layer - Padded to fit inside the frame decorative edges */}
-                  <div className="absolute inset-0 p-12 z-100 overflow-hidden">
-                    <img
-                      src={work.image}
-                      alt={work.title}
-                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                    />
-                  </div>
-
-                  {/* 2. The Decorative Frame Overlay */}
+                  {/* 1. The Decorative Frame Overlay (Parent Border) */}
                   <div
                     className="absolute inset-0 z-30 pointer-events-none"
                     style={{
@@ -193,11 +184,20 @@ const WorksPage = () => {
                     }}
                   />
 
+                  {/* 2. Image Layer (Child - fits inside border) */}
+                  <div className="relative h-full w-full z-10">
+                    <img
+                      src={work.image}
+                      alt={work.title}
+                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+                    />
+                  </div>
+
                   {/* 3. Shadow/Vignette inside the frame */}
                   <div className="absolute inset-0 bg-gradient-to-t from-pure-black/90 via-transparent to-transparent z-20 pointer-events-none" />
 
                   {/* 4. Text Content */}
-                  <div className="absolute inset-0 p-12 flex flex-col justify-end z-40">
+                  <div className="absolute inset-0 flex flex-col justify-end z-40">
                     <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                       <span className="text-blood-red text-[9px] tracking-[0.3em] font-bold block mb-1">
                         {getCategoryLabel(work.category).toUpperCase()}
