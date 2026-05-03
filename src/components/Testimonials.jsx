@@ -1,35 +1,51 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import bgImage7 from '../assets/background/6 1.png';
 
-const testimonials = [
-  {
-    id: 1,
-    name: 'Kenji M.',
-    location: 'Tokyo, Japan',
-    quote: 'The most incredible tattoo experience of my life. The attention to detail and the artistic vision transformed my idea into something beyond my imagination.',
-    avatar: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=100&h=100&fit=crop',
-    tattoo: 'Full Sleeve Dragon',
-  },
-  {
-    id: 2,
-    name: 'Sarah K.',
-    location: 'Los Angeles, USA',
-    quote: 'Painful but worth every second. The artist understood my vision perfectly and created a piece that tells my story in ways I never imagined possible.',
-    avatar: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=100&h=100&fit=crop',
-    tattoo: 'Oni Mask Back Piece',
-  },
-  {
-    id: 3,
-    name: 'Marcus R.',
-    location: 'Berlin, Germany',
-    quote: 'A true master of the craft. The gothic elements mixed with Japanese tradition created something truly unique. I will always treasure this piece.',
-    avatar: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=100&h=100&fit=crop',
-    tattoo: 'Gothic Blackwork Chest',
-  },
-];
-
 const Testimonials = () => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'ru';
+
+  const testimonials = [
+    {
+      id: 1,
+      name: currentLang === 'ru' ? 'Кенджи М.' : currentLang === 'uz' ? 'Kenji M.' : 'Kenji M.',
+      location: currentLang === 'ru' ? 'Токио, Япония' : currentLang === 'uz' ? 'Tokio, Yaponiya' : 'Tokyo, Japan',
+      quote: currentLang === 'ru' 
+        ? 'Невероятный опыт татуировки в моей жизни. Внимание к деталям и художественное видение превратили мою идею во что-то за пределами моего воображения.' 
+        : currentLang === 'uz'
+        ? 'Hayotimdagi eng ajoyib tattoo tajribasi. Diqqat-e\'tibor va san\'atkorona ko\'zga tashlanish fikrimni tasavvurimdan tashqari narsaga aylantirdi.'
+        : 'The most incredible tattoo experience of my life. The attention to detail and the artistic vision transformed my idea into something beyond my imagination.',
+      avatar: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=100&h=100&fit=crop',
+      tattoo: currentLang === 'ru' ? 'Полный Рукав Дракон' : currentLang === 'uz' ? 'To\'liq Yeng Ajdarho' : 'Full Sleeve Dragon',
+    },
+    {
+      id: 2,
+      name: currentLang === 'ru' ? 'Сара К.' : currentLang === 'uz' ? 'Sara K.' : 'Sarah K.',
+      location: currentLang === 'ru' ? 'Лос-Анджелес, США' : currentLang === 'uz' ? 'Los-Anjeles, AQSH' : 'Los Angeles, USA',
+      quote: currentLang === 'ru' 
+        ? 'Болезненно, но каждая секунда того стоила. Художник идеально понял мое видение и создал произведение, рассказывающее мою историю так, как я никогда не мог представить.' 
+        : currentLang === 'uz'
+        ? 'Og\'riqli, lekin har bir soniya arziguli. San\'atkor mening vizyonimni mukammal tushundi va tasavvurimda hech qachon bo\'lmagan tarzda hikoyamni aytuvchi asar yaratdi.'
+        : 'Painful but worth every second. The artist understood my vision perfectly and created a piece that tells my story in ways I never imagined possible.',
+      avatar: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=100&h=100&fit=crop',
+      tattoo: currentLang === 'ru' ? 'Маска Онии на спине' : currentLang === 'uz' ? 'Orqa Oni niqobi' : 'Oni Mask Back Piece',
+    },
+    {
+      id: 3,
+      name: currentLang === 'ru' ? 'Маркус Р.' : currentLang === 'uz' ? 'Markus R.' : 'Marcus R.',
+      location: currentLang === 'ru' ? 'Берлин, Германия' : currentLang === 'uz' ? 'Berlin, Germaniya' : 'Berlin, Germany',
+      quote: currentLang === 'ru' 
+        ? 'Настоящий мастер своего дела. Готические элементы, смешанные с японской традицией, создали что-то поистине уникальное. Я всегда буду дорожить этим произведением.' 
+        : currentLang === 'uz'
+        ? 'Haqiqiy usta. Gotika elementlari yapon an\'anasi bilan aralashib, haqiqatan ham noyob narsa yaratdi. Men buni doim qadrlayman.'
+        : 'A true master of the craft. The gothic elements mixed with Japanese tradition created something truly unique. I will always treasure this piece.',
+      avatar: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=100&h=100&fit=crop',
+      tattoo: currentLang === 'ru' ? 'Готический блэкворк на груди' : currentLang === 'uz' ? 'Kasr gotika blackwork' : 'Gothic Blackwork Chest',
+    },
+  ];
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   const nextTestimonial = () => {
@@ -63,11 +79,9 @@ const Testimonials = () => {
           className="text-center mb-20"
         >
           <span className="text-neon-red text-[0.75rem] tracking-[0.4em] mb-6 block font-serif uppercase">
-            Testimonials
+            {t('testimonials.title')}
           </span>
-          <h2 className="font-gothic text-4xl md:text-5xl font-bold text-soft-white mb-6">
-            Words from <span className="text-gradient-crimson">The Marked</span>
-          </h2>
+          <h2 className="font-gothic text-4xl md:text-5xl font-bold text-soft-white mb-6" dangerouslySetInnerHTML={{ __html: t('testimonials.heading') }} />
           <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-neon-red to-transparent mx-auto" />
         </motion.div>
 
@@ -127,6 +141,7 @@ const Testimonials = () => {
           <button
             onClick={prevTestimonial}
             className="w-12 h-12 border border-neon-red/30 flex items-center justify-center text-neon-red hover:bg-deep-red/20 hover:border-neon-red/60 transition-all duration-300"
+            aria-label="Previous testimonial"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
@@ -142,6 +157,7 @@ const Testimonials = () => {
                 className={`transition-all duration-300 ${
                   index === activeIndex ? 'w-8 h-[2px] bg-neon-red' : 'w-3 h-[2px] bg-neon-red/30'
                 }`}
+                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
@@ -149,6 +165,7 @@ const Testimonials = () => {
           <button
             onClick={nextTestimonial}
             className="w-12 h-12 border border-neon-red/30 flex items-center justify-center text-neon-red hover:bg-deep-red/20 hover:border-neon-red/60 transition-all duration-300"
+            aria-label="Next testimonial"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />

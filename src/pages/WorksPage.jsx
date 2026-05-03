@@ -1,101 +1,114 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { useLanguageRouter } from '../i18n/useLanguageRouter';
 import bgImage2 from '../assets/background/10 1.png';
 
-const works = [
-  {
-    id: 1,
-    title: 'Crimson Dragon',
-    category: 'Dragon',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Full back piece featuring traditional Japanese dragon',
-  },
-  {
-    id: 2,
-    title: 'Oni Demon Mask',
-    category: 'Japanese',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Chest piece with fierce oni mask design',
-  },
-  {
-    id: 3,
-    title: 'Gothic Cathedral',
-    category: 'Gothic',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Arm sleeve with cathedral architecture',
-  },
-  {
-    id: 4,
-    title: 'Full Sleeve Masterpiece',
-    category: 'Full Sleeve',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Complete sleeve combining dragon and samurai',
-  },
-  {
-    id: 5,
-    title: 'Koi Fish Flow',
-    category: 'Japanese',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Leg piece with flowing koi fish',
-  },
-  {
-    id: 6,
-    title: 'Sacred Geometry',
-    category: 'Blackwork',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Geometric patterns with symbolic meaning',
-  },
-  {
-    id: 7,
-    title: 'Phoenix Rising',
-    category: 'Dragon',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Back piece with phoenix and dragon clash',
-  },
-  {
-    id: 8,
-    title: 'Samurai Warrior',
-    category: 'Japanese',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Chest piece honoring bushido code',
-  },
-  {
-    id: 9,
-    title: 'Skull Gothic',
-    category: 'Gothic',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Shoulder piece with ornate skull design',
-  },
-  {
-    id: 10,
-    title: 'Tribal Symbols',
-    category: 'Symbols',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Forearm band with ancient symbols',
-  },
-  {
-    id: 11,
-    title: 'Custom Portrait',
-    category: 'Custom',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Realistic portrait with gothic elements',
-  },
-  {
-    id: 12,
-    title: 'Geometric Blackwork',
-    category: 'Blackwork',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-    description: 'Abstract geometric patterns',
-  },
-];
-
-const categories = ['All', 'Dragon', 'Japanese', 'Gothic', 'Blackwork', 'Symbols', 'Full Sleeve', 'Custom'];
-
 const WorksPage = () => {
+  const { t } = useTranslation();
+  const { langNavigate } = useLanguageRouter();
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedWork, setSelectedWork] = useState(null);
 
-  const filteredWorks = activeCategory === 'All' 
+  const works = [
+    {
+      id: 1,
+      title: 'Crimson Dragon',
+      category: t('works.categories.dragon'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Full back piece featuring traditional Japanese dragon',
+    },
+    {
+      id: 2,
+      title: 'Oni Demon Mask',
+      category: t('works.categories.japanese'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Chest piece with fierce oni mask design',
+    },
+    {
+      id: 3,
+      title: 'Gothic Cathedral',
+      category: t('works.categories.gothic'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Arm sleeve with cathedral architecture',
+    },
+    {
+      id: 4,
+      title: 'Full Sleeve Masterpiece',
+      category: t('works.categories.fullSleeve'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Complete sleeve combining dragon and samurai',
+    },
+    {
+      id: 5,
+      title: 'Koi Fish Flow',
+      category: t('works.categories.japanese'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Leg piece with flowing koi fish',
+    },
+    {
+      id: 6,
+      title: 'Sacred Geometry',
+      category: t('works.categories.symbols'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Geometric patterns with symbolic meaning',
+    },
+    {
+      id: 7,
+      title: 'Phoenix Rising',
+      category: t('works.categories.dragon'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Back piece with phoenix and dragon clash',
+    },
+    {
+      id: 8,
+      title: 'Samurai Warrior',
+      category: t('works.categories.japanese'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Chest piece honoring bushido code',
+    },
+    {
+      id: 9,
+      title: 'Skull Gothic',
+      category: t('works.categories.gothic'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Shoulder piece with ornate skull design',
+    },
+    {
+      id: 10,
+      title: 'Tribal Symbols',
+      category: t('works.categories.symbols'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Forearm band with ancient symbols',
+    },
+    {
+      id: 11,
+      title: 'Custom Portrait',
+      category: t('works.categories.custom'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Realistic portrait with gothic elements',
+    },
+    {
+      id: 12,
+      title: 'Geometric Blackwork',
+      category: t('works.categories.blackwork'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+      description: 'Abstract geometric patterns',
+    },
+  ];
+
+  const categories = [
+    t('works.categories.all'),
+    t('works.categories.dragon'),
+    t('works.categories.japanese'),
+    t('works.categories.gothic'),
+    t('works.categories.blackwork'),
+    t('works.categories.symbols'),
+    t('works.categories.fullSleeve'),
+    t('works.categories.custom'),
+  ];
+
+  const filteredWorks = activeCategory === t('works.categories.all') 
     ? works 
     : works.filter(work => work.category === activeCategory);
 
@@ -114,7 +127,7 @@ const WorksPage = () => {
         <div className="bg-image-overlay" />
       </div>
 
-      {/* Atmospheric Effects - Reduced for performance */}
+      {/* Atmospheric Effects */}
       <div className="fixed inset-0 pointer-events-none z-1">
         <div className="grain-overlay" />
         <div className="red-ambient" />
@@ -128,14 +141,11 @@ const WorksPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-blood-red text-sm tracking-widest mb-4 block">PORTFOLIO</span>
-            <h1 className="font-gothic text-5xl md:text-7xl font-bold text-soft-white mb-6">
-              THE <span className="text-neon-crimson">GALLERY</span>
-            </h1>
+            <span className="text-blood-red text-sm tracking-widest mb-4 block">{t('works.hero.title')}</span>
+            <h1 className="font-gothic text-5xl md:text-7xl font-bold text-soft-white mb-6" dangerouslySetInnerHTML={{ __html: t('works.hero.heading') }} />
             <div className="w-24 h-0.5 bg-gradient-to-r from-blood-red to-neon-crimson mx-auto mb-8" />
             <p className="text-soft-white/60 font-body max-w-2xl mx-auto">
-              Each tattoo is a story carved into flesh. Explore the collection of dragons, demons, 
-              and eternal symbols that define the art of Dragon Ink.
+              {t('works.hero.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -307,22 +317,19 @@ const WorksPage = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-gothic text-3xl md:text-4xl font-bold text-soft-white mb-6">
-              READY TO CREATE YOUR <span className="text-neon-crimson">LEGEND</span>?
-            </h2>
+            <h2 className="font-gothic text-3xl md:text-4xl font-bold text-soft-white mb-6" dangerouslySetInnerHTML={{ __html: t('works.cta.heading') }} />
             <p className="text-soft-white/60 font-body mb-8 max-w-xl mx-auto">
-              Every great tattoo starts with a conversation. Let's discuss your vision and bring 
-              your idea to life.
+              {t('works.cta.subtitle')}
             </p>
-            <a
-              href="/contact"
+            <button
+              onClick={() => langNavigate('/contact')}
               className="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-blood-red to-neon-crimson text-soft-white font-gothic tracking-widest hover:shadow-neon-red-strong transition-all duration-300"
             >
-              <span>START YOUR JOURNEY</span>
+              <span>{t('works.cta.button')}</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </button>
           </motion.div>
         </div>
       </section>

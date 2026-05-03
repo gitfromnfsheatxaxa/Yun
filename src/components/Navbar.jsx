@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../i18n/LanguageSwitcher';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,15 +19,35 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Get current language from pathname
+  const getCurrentLang = () => {
+    const segments = location.pathname.split('/').filter(Boolean);
+    const firstSegment = segments[0];
+    const supportedLangs = ['ru', 'en', 'uz'];
+    if (supportedLangs.includes(firstSegment)) {
+      return firstSegment;
+    }
+    return 'ru';
+  };
+
+  const currentLang = getCurrentLang();
+
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Works', path: '/works' },
-    { name: 'Prices', path: '/prices' },
-    { name: 'Contact', path: '/contact' },
+    { name: t('nav.home'), path: `/${currentLang}/` },
+    { name: t('nav.about'), path: `/${currentLang}/about` },
+    { name: t('nav.works'), path: `/${currentLang}/works` },
+    { name: t('nav.prices'), path: `/${currentLang}/prices` },
+    { name: t('nav.contact'), path: `/${currentLang}/contact` },
   ];
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
+  const handleNavClick = (path) => {
+    navigate(path);
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -40,7 +64,10 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-4 group">
+            <button 
+              onClick={() => handleNavClick(`/${currentLang}/`)}
+              className="flex items-center space-x-4 group"
+            >
               <motion.div
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 className="relative"
@@ -92,15 +119,17 @@ const Navbar = () => {
                   Tattoo Sanctuary
                 </span>
               </div>
-            </Link>
+            </button>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-10">
+            <div className="hidden md:flex items-center space-x-6">
               {navItems.map((item) => (
-                <Link
+                <button
                   key={item.path}
-                  to={item.path}
-                  className="relative font-serif text-[0.95rem] tracking-[0.25em] text-soft-white/80 hover:text-neon-red transition-all duration-500 py-2 group"
+                  onClick={() => handleNavClick(item.path)}
+                  className={`relative font-serif text-[0.95rem] tracking-[0.25em] transition-all duration-500 py-2 group ${
+                    isActive(item.path) ? 'text-neon-red' : 'text-soft-white/80 hover:text-neon-red'
+                  }`}
                 >
                   {item.name}
                   <motion.span
@@ -108,8 +137,13 @@ const Navbar = () => {
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: isActive(item.path) ? 1 : 0 }}
                   />
-                </Link>
+                </button>
               ))}
+              
+              {/* Language Switcher */}
+              <div className="ml-4 pl-6 border-l border-neon-red/20">
+                <LanguageSwitcher />
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -169,17 +203,26 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Link
-                    to={item.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                  <button
+                    onClick={() => handleNavClick(item.path)}
                     className={`font-gothic text-3xl tracking-[0.3em] transition-all duration-500 hover:text-glow ${
                       isActive(item.path) ? 'text-neon-red' : 'text-soft-white'
                     }`}
                   >
                     {item.name}
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
+              
+              {/* Mobile Language Switcher */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
+                className="pt-8 border-t border-neon-red/20"
+              >
+                <LanguageSwitcher />
+              </motion.div>
             </div>
           </motion.div>
         )}

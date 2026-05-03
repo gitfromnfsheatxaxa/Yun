@@ -1,7 +1,30 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useLocation } from 'react-router-dom';
 import bgImage6 from '../assets/background/6 1.png';
 
 const ArtistPhilosophy = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get current language from pathname
+  const getCurrentLang = () => {
+    const segments = location.pathname.split('/').filter(Boolean);
+    const firstSegment = segments[0];
+    const supportedLangs = ['ru', 'en', 'uz'];
+    if (supportedLangs.includes(firstSegment)) {
+      return firstSegment;
+    }
+    return 'ru';
+  };
+
+  const currentLang = getCurrentLang();
+
+  const langNavigate = (path) => {
+    navigate(`/${currentLang}${path}`);
+  };
+
   return (
     <section className="relative py-32 px-6 overflow-hidden">
       {/* Background Image */}
@@ -57,23 +80,18 @@ const ArtistPhilosophy = () => {
           >
             <div>
               <span className="text-neon-red text-[0.75rem] tracking-[0.4em] mb-6 block font-serif uppercase">
-                The Artist
+                {t('philosophy.title')}
               </span>
-              <h2 className="font-gothic text-4xl md:text-5xl font-bold text-soft-white mb-6">
-                Marked by <span className="text-gradient-crimson">Dragons</span>
-              </h2>
+              <h2 className="font-gothic text-4xl md:text-5xl font-bold text-soft-white mb-6" dangerouslySetInnerHTML={{ __html: t('philosophy.heading') }} />
               <div className="w-32 h-[1px] bg-gradient-to-r from-neon-red to-transparent mb-8" />
             </div>
 
             <div className="space-y-6 text-soft-white/70 font-serif text-lg leading-relaxed">
               <p>
-                Every tattoo tells a story. Every needle strike is a <span className="text-neon-red italic">ritual</span>. 
-                I don't just ink skin—I carve memories into flesh, transforming pain into something eternal.
+                {t('philosophy.intro1')}
               </p>
               <p>
-                My art draws from the ancient traditions of Japanese irezumi, the dark mysticism 
-                of gothic cathedrals, and the raw power of dragon mythology. Each piece is a 
-                fusion of cultures, a bridge between worlds.
+                {t('philosophy.intro2')}
               </p>
               <motion.blockquote 
                 initial={{ opacity: 0, y: 20 }}
@@ -83,7 +101,7 @@ const ArtistPhilosophy = () => {
                 className="border-l-2 border-neon-red pl-6 py-2"
               >
                 <p className="text-neon-red font-gothic text-xl italic">
-                  "INK IS ETERNAL. THE PAIN IS TEMPORARY. THE SYMBOLISM IS FOREVER."
+                  {t('philosophy.quote')}
                 </p>
               </motion.blockquote>
             </div>
@@ -97,10 +115,10 @@ const ArtistPhilosophy = () => {
               className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8"
             >
               {[
-                { icon: '◆', title: 'Symbolism', desc: 'Every design carries meaning' },
-                { icon: '◆', title: 'Craftsmanship', desc: 'Precision in every line' },
-                { icon: '◆', title: 'Tradition', desc: 'Honoring ancient arts' },
-                { icon: '◆', title: 'Uniqueness', desc: 'No two pieces alike' },
+                { icon: '◆', title: t('philosophy.points.symbolism.title'), desc: t('philosophy.points.symbolism.desc') },
+                { icon: '◆', title: t('philosophy.points.craftsmanship.title'), desc: t('philosophy.points.craftsmanship.desc') },
+                { icon: '◆', title: t('philosophy.points.tradition.title'), desc: t('philosophy.points.tradition.desc') },
+                { icon: '◆', title: t('philosophy.points.uniqueness.title'), desc: t('philosophy.points.uniqueness.desc') },
               ].map((item, index) => (
                 <motion.div
                   key={index}

@@ -1,22 +1,25 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import bgImage1 from '../assets/background/1 1.png';
 
 const AboutPage = () => {
+  const { t } = useTranslation();
+
   const timeline = [
-    { year: '2015', title: 'The Beginning', desc: 'Started my journey in traditional Japanese tattooing' },
-    { year: '2017', title: 'First Studio', desc: 'Opened my first underground studio in Shibuya' },
-    { year: '2019', title: 'International Recognition', desc: 'Featured in Tattoo Magazine & Tokyo Art Week' },
-    { year: '2021', title: 'Dragon Ink Temple', desc: 'Established the current studio sanctuary' },
-    { year: '2024', title: 'Master Artist', desc: 'Recognized as a master of neo-traditional irezumi' },
+    { year: '2015', title: t('about.journey.timeline.0.title'), desc: t('about.journey.timeline.0.desc') },
+    { year: '2017', title: t('about.journey.timeline.1.title'), desc: t('about.journey.timeline.1.desc') },
+    { year: '2019', title: t('about.journey.timeline.2.title'), desc: t('about.journey.timeline.2.desc') },
+    { year: '2021', title: t('about.journey.timeline.3.title'), desc: t('about.journey.timeline.3.desc') },
+    { year: '2024', title: t('about.journey.timeline.4.title'), desc: t('about.journey.timeline.4.desc') },
   ];
 
   const specialties = [
-    { icon: '🐉', title: 'Dragon Art', desc: 'Traditional and modern dragon designs' },
-    { icon: '🎭', title: 'Oni Masks', desc: 'Demon masks with gothic influences' },
-    { icon: '⚔️', title: 'Samurai', desc: 'Warrior imagery and bushido symbolism' },
-    { icon: '🌸', title: 'Irezumi', desc: 'Full Japanese traditional style' },
-    { icon: '⚫', title: 'Blackwork', desc: 'Bold geometric and organic patterns' },
-    { icon: '🏯', title: 'Gothic', desc: 'Cathedral and medieval aesthetics' },
+    { icon: '🐉', title: t('about.specialties.items.0.title'), desc: t('about.specialties.items.0.desc') },
+    { icon: '🎭', title: t('about.specialties.items.1.title'), desc: t('about.specialties.items.1.desc') },
+    { icon: '⚔️', title: t('about.specialties.items.2.title'), desc: t('about.specialties.items.2.desc') },
+    { icon: '🌸', title: t('about.specialties.items.3.title'), desc: t('about.specialties.items.3.desc') },
+    { icon: '⚫', title: t('about.specialties.items.4.title'), desc: t('about.specialties.items.4.desc') },
+    { icon: '🏯', title: t('about.specialties.items.5.title'), desc: t('about.specialties.items.5.desc') },
   ];
 
   return (
@@ -48,10 +51,8 @@ const AboutPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-blood-red text-sm tracking-widest mb-4 block">THE ARTIST</span>
-            <h1 className="font-gothic text-5xl md:text-7xl font-bold text-soft-white mb-6">
-              BEHIND THE <span className="text-neon-crimson">NEEDLE</span>
-            </h1>
+            <span className="text-blood-red text-sm tracking-widest mb-4 block">{t('about.hero.title')}</span>
+            <h1 className="font-gothic text-5xl md:text-7xl font-bold text-soft-white mb-6" dangerouslySetInnerHTML={{ __html: t('about.hero.heading') }} />
             <div className="w-24 h-0.5 bg-gradient-to-r from-blood-red to-neon-crimson mx-auto mb-8" />
           </motion.div>
 
@@ -80,28 +81,16 @@ const AboutPage = () => {
 
             {/* Story */}
             <div className="text-left space-y-6">
-              <p className="text-soft-white/80 font-body text-lg leading-relaxed">
-                My name is <span className="text-neon-crimson">Kaito</span>, and for over a decade, 
-                I've been carving stories into flesh. What started as a fascination with Japanese 
-                mythology evolved into a lifelong devotion to the art of tattooing.
-              </p>
-              <p className="text-soft-white/80 font-body text-lg leading-relaxed">
-                I believe every tattoo is a <span className="text-blood-red">ritual</span> — a sacred 
-                exchange between artist and canvas. The pain is not punishment; it's purification. 
-                The ink is not pigment; it's <span className="text-neon-crimson">memory made eternal</span>.
-              </p>
-              <p className="text-soft-white/80 font-body text-lg leading-relaxed">
-                My studio is not a business. It's a <span className="text-blood-red">temple</span>. 
-                A place where the ancient meets the modern, where darkness and beauty collide, 
-                where you leave not just marked, but <span className="text-neon-crimson">transformed</span>.
-              </p>
+              <p className="text-soft-white/80 font-body text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: t('about.hero.bio1', { name: t('about.hero.name') }) }} />
+              <p className="text-soft-white/80 font-body text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: t('about.hero.bio2') }} />
+              <p className="text-soft-white/80 font-body text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: t('about.hero.bio3') }} />
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8">
                 {[
-                  { number: '10+', label: 'Years Experience' },
-                  { number: '500+', label: 'Tattoos Completed' },
-                  { number: '15', label: 'Countries Served' },
+                  { number: '10+', label: t('about.hero.stats.years') },
+                  { number: '500+', label: t('about.hero.stats.tattoos') },
+                  { number: '15', label: t('about.hero.stats.countries') },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -130,10 +119,8 @@ const AboutPage = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="text-blood-red text-sm tracking-widest mb-4 block">JOURNEY</span>
-            <h2 className="font-gothic text-4xl md:text-5xl font-bold text-soft-white mb-4">
-              MY <span className="text-neon-crimson">PATH</span>
-            </h2>
+            <span className="text-blood-red text-sm tracking-widest mb-4 block">{t('about.journey.title')}</span>
+            <h2 className="font-gothic text-4xl md:text-5xl font-bold text-soft-white mb-4" dangerouslySetInnerHTML={{ __html: t('about.journey.heading') }} />
             <div className="w-24 h-0.5 bg-gradient-to-r from-blood-red to-neon-crimson mx-auto" />
           </motion.div>
 
@@ -175,9 +162,9 @@ const AboutPage = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="text-blood-red text-sm tracking-widest mb-4 block">EXPERTISE</span>
+            <span className="text-blood-red text-sm tracking-widest mb-4 block">{t('about.specialties.title')}</span>
             <h2 className="font-gothic text-4xl md:text-5xl font-bold text-soft-white mb-4">
-              SPECIALTIES
+              {t('about.specialties.heading')}
             </h2>
             <div className="w-24 h-0.5 bg-gradient-to-r from-blood-red to-neon-crimson mx-auto" />
           </motion.div>
@@ -213,10 +200,8 @@ const AboutPage = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="text-6xl text-blood-red/30 font-gothic mb-6">"</div>
-            <blockquote className="font-gothic text-2xl md:text-4xl text-soft-white leading-relaxed mb-6">
-              The body is a canvas. The needle is a brush. The pain is the price of <span className="text-neon-crimson">immortality</span>.
-            </blockquote>
-            <cite className="text-blood-red font-body tracking-widest not-italic">— Kaito, Dragon Ink</cite>
+            <blockquote className="font-gothic text-2xl md:text-4xl text-soft-white leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: t('about.quote') }} />
+            <cite className="text-blood-red font-body tracking-widest not-italic">— {t('about.hero.name')}, Dragon Ink</cite>
           </motion.div>
         </div>
       </section>

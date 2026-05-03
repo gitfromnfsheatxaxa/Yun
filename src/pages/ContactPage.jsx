@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import bgImage4 from '../assets/background/5 1.png';
 
 const ContactPage = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,8 +41,8 @@ const ContactPage = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       ),
-      title: 'Location',
-      content: 'Shibuya District, Tokyo, Japan',
+      title: t('contact.studioInfo.0.title'),
+      content: t('contact.studioInfo.0.content'),
     },
     {
       icon: (
@@ -48,8 +50,8 @@ const ContactPage = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
         </svg>
       ),
-      title: 'Phone',
-      content: '+81 3-1234-5678',
+      title: t('contact.studioInfo.1.title'),
+      content: t('contact.studioInfo.1.content'),
     },
     {
       icon: (
@@ -57,8 +59,8 @@ const ContactPage = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
-      title: 'Email',
-      content: 'info@dragonink.jp',
+      title: t('contact.studioInfo.2.title'),
+      content: t('contact.studioInfo.2.content'),
     },
     {
       icon: (
@@ -66,8 +68,8 @@ const ContactPage = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      title: 'Hours',
-      content: 'Tue - Sun: 12PM - 10PM\nMonday: Closed',
+      title: t('contact.studioInfo.3.title'),
+      content: t('contact.studioInfo.3.content'),
     },
   ];
 
@@ -92,7 +94,7 @@ const ContactPage = () => {
         <div className="bg-image-overlay" />
       </div>
 
-      {/* Atmospheric Effects - Reduced for performance */}
+      {/* Atmospheric Effects */}
       <div className="fixed inset-0 pointer-events-none z-1">
         <div className="grain-overlay" />
         <div className="red-ambient" />
@@ -106,14 +108,11 @@ const ContactPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-blood-red text-sm tracking-widest mb-4 block">CONTACT</span>
-            <h1 className="font-gothic text-5xl md:text-7xl font-bold text-soft-white mb-6">
-              BEGIN YOUR <span className="text-neon-crimson">JOURNEY</span>
-            </h1>
+            <span className="text-blood-red text-sm tracking-widest mb-4 block">{t('contact.hero.title')}</span>
+            <h1 className="font-gothic text-5xl md:text-7xl font-bold text-soft-white mb-6" dangerouslySetInnerHTML={{ __html: t('contact.hero.heading') }} />
             <div className="w-24 h-0.5 bg-gradient-to-r from-blood-red to-neon-crimson mx-auto mb-8" />
             <p className="text-soft-white/60 font-body max-w-2xl mx-auto">
-              Ready to transform your skin into art? Fill out the form below and we'll 
-              get back to you within 48 hours to discuss your vision.
+              {t('contact.hero.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -137,7 +136,7 @@ const ContactPage = () => {
               <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-neon-crimson/30" />
 
               <h2 className="font-gothic text-2xl font-bold text-soft-white mb-8">
-                BOOKING REQUEST
+                {t('contact.form.title')}
               </h2>
 
               {submitted ? (
@@ -152,11 +151,10 @@ const ContactPage = () => {
                     </svg>
                   </div>
                   <h3 className="font-gothic text-2xl font-bold text-soft-white mb-4">
-                    REQUEST RECEIVED
+                    {t('contact.success.title')}
                   </h3>
                   <p className="text-soft-white/60 font-body mb-6">
-                    Thank you for contacting us. We'll review your request and get back 
-                    to you within 48 hours.
+                    {t('contact.success.subtitle')}
                   </p>
                   <button
                     onClick={() => {
@@ -165,7 +163,7 @@ const ContactPage = () => {
                     }}
                     className="text-neon-crimson hover:text-blood-red transition-colors font-body tracking-wider"
                   >
-                    Submit Another Request
+                    {t('contact.success.another')}
                   </button>
                 </motion.div>
               ) : (
@@ -174,7 +172,7 @@ const ContactPage = () => {
                     {/* Name */}
                     <div>
                       <label className="block text-soft-white/60 text-sm font-body mb-2">
-                        Full Name *
+                        {t('contact.form.name')}
                       </label>
                       <input
                         type="text"
@@ -183,14 +181,14 @@ const ContactPage = () => {
                         onChange={handleChange}
                         required
                         className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
-                        placeholder="Your name"
+                        placeholder={t('contact.form.name')}
                       />
                     </div>
 
                     {/* Email */}
                     <div>
                       <label className="block text-soft-white/60 text-sm font-body mb-2">
-                        Email Address *
+                        {t('contact.form.email')}
                       </label>
                       <input
                         type="email"
@@ -207,7 +205,7 @@ const ContactPage = () => {
                   {/* Tattoo Idea */}
                   <div>
                     <label className="block text-soft-white/60 text-sm font-body mb-2">
-                      Tattoo Idea / Description *
+                      {t('contact.form.tattooIdea')}
                     </label>
                     <textarea
                       name="tattooIdea"
@@ -216,7 +214,7 @@ const ContactPage = () => {
                       required
                       rows={4}
                       className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all resize-none"
-                      placeholder="Describe your tattoo idea, style preferences, and any specific elements you want..."
+                      placeholder={t('contact.form.placeholder.tattooIdea')}
                     />
                   </div>
 
@@ -224,7 +222,7 @@ const ContactPage = () => {
                     {/* Placement */}
                     <div>
                       <label className="block text-soft-white/60 text-sm font-body mb-2">
-                        Body Placement *
+                        {t('contact.form.placement')}
                       </label>
                       <select
                         name="placement"
@@ -233,21 +231,21 @@ const ContactPage = () => {
                         required
                         className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
                       >
-                        <option value="">Select placement</option>
-                        <option value="arm">Arm / Sleeve</option>
-                        <option value="chest">Chest</option>
-                        <option value="back">Back</option>
-                        <option value="leg">Leg</option>
-                        <option value="shoulder">Shoulder</option>
-                        <option value="forearm">Forearm</option>
-                        <option value="other">Other</option>
+                        <option value="">{t('contact.form.select.placement.arm')}</option>
+                        <option value="arm">{t('contact.form.select.placement.arm')}</option>
+                        <option value="chest">{t('contact.form.select.placement.chest')}</option>
+                        <option value="back">{t('contact.form.select.placement.back')}</option>
+                        <option value="leg">{t('contact.form.select.placement.leg')}</option>
+                        <option value="shoulder">{t('contact.form.select.placement.shoulder')}</option>
+                        <option value="forearm">{t('contact.form.select.placement.forearm')}</option>
+                        <option value="other">{t('contact.form.select.placement.other')}</option>
                       </select>
                     </div>
 
                     {/* Preferred Date */}
                     <div>
                       <label className="block text-soft-white/60 text-sm font-body mb-2">
-                        Preferred Date
+                        {t('contact.form.preferredDate')}
                       </label>
                       <input
                         type="date"
@@ -262,7 +260,7 @@ const ContactPage = () => {
                   {/* Budget */}
                   <div>
                     <label className="block text-soft-white/60 text-sm font-body mb-2">
-                      Budget Range
+                      {t('contact.form.budget')}
                     </label>
                     <select
                       name="budget"
@@ -270,12 +268,12 @@ const ContactPage = () => {
                       onChange={handleChange}
                       className="w-full bg-pure-black/80 backdrop-blur-sm border border-blood-red/30 px-4 py-3 text-soft-white font-body focus:border-neon-crimson focus:outline-none focus:ring-1 focus:ring-neon-crimson transition-all"
                     >
-                      <option value="">Select budget</option>
-                      <option value="150-300">$150 - $300</option>
-                      <option value="300-600">$300 - $600</option>
-                      <option value="600-1000">$600 - $1,000</option>
-                      <option value="1000-2000">$1,000 - $2,000</option>
-                      <option value="2000+">$2,000+</option>
+                      <option value="">{t('contact.form.select.budget.150')}</option>
+                      <option value="150-300">{t('contact.form.select.budget.150')}</option>
+                      <option value="300-600">{t('contact.form.select.budget.300')}</option>
+                      <option value="600-1000">{t('contact.form.select.budget.600')}</option>
+                      <option value="1000-2000">{t('contact.form.select.budget.1000')}</option>
+                      <option value="2000+">{t('contact.form.select.budget.2000')}</option>
                     </select>
                   </div>
 
@@ -291,15 +289,15 @@ const ContactPage = () => {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                         </svg>
-                        <span>SENDING...</span>
+                        <span>{t('contact.form.sending')}</span>
                       </span>
                     ) : (
-                      'SUBMIT REQUEST'
+                      t('contact.form.submit')
                     )}
                   </button>
 
                   <p className="text-soft-white/40 text-xs text-center font-body">
-                    By submitting, you agree to our terms. A deposit will be required to confirm your appointment.
+                    {t('contact.form.agree')}
                   </p>
                 </form>
               )}
@@ -335,7 +333,7 @@ const ContactPage = () => {
 
               {/* Social Links */}
               <div className="bg-dark-charcoal/80 backdrop-blur-sm border border-blood-red/20 p-8">
-                <h4 className="font-gothic text-white font-semibold mb-6">FOLLOW OUR WORK</h4>
+                <h4 className="font-gothic text-white font-semibold mb-6">{t('contact.studio.follow')}</h4>
                 <div className="flex items-center space-x-4">
                   {socialLinks.map((social, index) => (
                     <motion.a
@@ -361,7 +359,7 @@ const ContactPage = () => {
 
               {/* Map Placeholder */}
               <div className="bg-dark-charcoal/80 backdrop-blur-sm border border-blood-red/20 p-8">
-                <h4 className="font-gothic text-white font-semibold mb-4">STUDIO LOCATION</h4>
+                <h4 className="font-gothic text-white font-semibold mb-4">{t('contact.studio.map.title')}</h4>
                 <div className="aspect-video bg-pure-black/80 backdrop-blur-sm border border-blood-red/20 flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 opacity-30">
                     <div className="w-full h-full bg-gradient-to-br from-blood-red/20 to-transparent" />
@@ -371,8 +369,8 @@ const ContactPage = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <p className="text-soft-white/60 font-body text-sm">Shibuya District, Tokyo</p>
-                    <p className="text-soft-white/40 text-xs mt-2">Directions available upon booking confirmation</p>
+                    <p className="text-soft-white/60 font-body text-sm">{t('contact.studio.map.location')}</p>
+                    <p className="text-soft-white/40 text-xs mt-2">{t('contact.studio.map.directions')}</p>
                   </div>
                 </div>
               </div>

@@ -1,8 +1,30 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useLocation } from 'react-router-dom';
 import bgImage1 from '../assets/background/image.png';
 
 const Hero = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get current language from pathname
+  const getCurrentLang = () => {
+    const segments = location.pathname.split('/').filter(Boolean);
+    const firstSegment = segments[0];
+    const supportedLangs = ['ru', 'en', 'uz'];
+    if (supportedLangs.includes(firstSegment)) {
+      return firstSegment;
+    }
+    return 'ru';
+  };
+
+  const currentLang = getCurrentLang();
+
+  const langNavigate = (path) => {
+    navigate(`/${currentLang}${path}`);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -24,7 +46,7 @@ const Hero = () => {
           transition={{ delay: 0.3 }}
           className="text-neon-red text-2xl mb-8 tracking-[0.5em] font-serif italic"
         >
-          龍の墨
+          {t('hero.japaneseChars')}
         </motion.div>
 
         {/* Main Title */}
@@ -34,9 +56,9 @@ const Hero = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="hero-text text-soft-white mb-6"
         >
-          <span className="block">The Art of</span>
+          <span className="block">{t('hero.title.first')}</span>
           <span className="block text-glow bg-gradient-to-r from-soft-white via-neon-red to-deep-red bg-clip-text text-transparent">
-            Eternal Ink
+            {t('hero.title.second')}
           </span>
         </motion.h1>
 
@@ -47,9 +69,9 @@ const Hero = () => {
           transition={{ delay: 0.8 }}
           className="hero-text-subtitle text-soft-white/70 mb-12 max-w-2xl mx-auto"
         >
-          Custom tattoos inspired by dragons, mythology, and darkness.
+          {t('hero.subtitle')}
           <br />
-          <span className="text-neon-red italic">Where pain becomes art.</span>
+          <span className="text-neon-red italic">{t('hero.tagline')}</span>
         </motion.p>
 
         {/* CTA Buttons */}
@@ -59,19 +81,19 @@ const Hero = () => {
           transition={{ delay: 1 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
-          <Link
-            to="/works"
+          <button
+            onClick={() => langNavigate('/works')}
             className="btn-primary group"
           >
-            <span>VIEW WORKS</span>
-          </Link>
+            <span>{t('hero.cta.viewWorks')}</span>
+          </button>
 
-          <Link
-            to="/contact"
+          <button
+            onClick={() => langNavigate('/contact')}
             className="btn-secondary group"
           >
-            <span>BOOK SESSION</span>
-          </Link>
+            <span>{t('hero.cta.bookSession')}</span>
+          </button>
         </motion.div>
       </div>
     </section>

@@ -1,74 +1,78 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useLanguageRouter } from '../i18n/useLanguageRouter';
 import bgImage3 from '../assets/background/6 1.png';
 
-const pricingTiers = [
-  {
-    id: 1,
-    title: 'Small Tattoo',
-    description: 'Simple designs, symbols, or text',
-    price: 'From $150',
-    duration: '1-2 hours',
-    features: [
-      'Up to 4 inches',
-      'Single color or minimal shading',
-      'Simple symbols or lettering',
-      'One session',
-    ],
-    popular: false,
-  },
-  {
-    id: 2,
-    title: 'Medium Tattoo',
-    description: 'Detailed pieces with more complexity',
-    price: 'From $400',
-    duration: '3-5 hours',
-    features: [
-      'Up to 8 inches',
-      'Multiple colors',
-      'Shading and depth',
-      'Dragon scales, floral elements',
-    ],
-    popular: true,
-  },
-  {
-    id: 3,
-    title: 'Large Piece',
-    description: 'Statement pieces with full detail',
-    price: 'From $800',
-    duration: '6+ hours',
-    features: [
-      '8+ inches',
-      'Full color or blackwork',
-      'Intricate detail',
-      'Multiple sessions may apply',
-    ],
-    popular: false,
-  },
-  {
-    id: 4,
-    title: 'Full Sleeve',
-    description: 'Complete arm transformation',
-    price: 'From $3,500',
-    duration: '20-30 hours',
-    features: [
-      'Shoulder to wrist',
-      'Cohesive design flow',
-      'Multiple sessions',
-      'Custom artwork included',
-    ],
-    popular: false,
-  },
-];
-
-const additionalServices = [
-  { name: 'Custom Design Sketch', price: '$100-$300', desc: 'Original artwork creation' },
-  { name: 'Consultation Session', price: '$50', desc: 'Fully refundable with deposit' },
-  { name: 'Touch-Up Session', price: '$75/hour', desc: 'After healing period' },
-  { name: 'Cover-Up Work', price: 'Quote required', desc: 'Assessment needed' },
-];
-
 const PricesPage = () => {
+  const { t } = useTranslation();
+  const { langNavigate } = useLanguageRouter();
+
+  const pricingTiers = [
+    {
+      id: 1,
+      title: t('prices.tiers.0.title'),
+      description: t('prices.tiers.0.description'),
+      price: t('prices.tiers.0.price'),
+      duration: t('prices.tiers.0.duration'),
+      features: [
+        t('prices.tiers.0.features.0'),
+        t('prices.tiers.0.features.1'),
+        t('prices.tiers.0.features.2'),
+        t('prices.tiers.0.features.3'),
+      ],
+      popular: false,
+    },
+    {
+      id: 2,
+      title: t('prices.tiers.1.title'),
+      description: t('prices.tiers.1.description'),
+      price: t('prices.tiers.1.price'),
+      duration: t('prices.tiers.1.duration'),
+      features: [
+        t('prices.tiers.1.features.0'),
+        t('prices.tiers.1.features.1'),
+        t('prices.tiers.1.features.2'),
+        t('prices.tiers.1.features.3'),
+      ],
+      popular: true,
+    },
+    {
+      id: 3,
+      title: t('prices.tiers.2.title'),
+      description: t('prices.tiers.2.description'),
+      price: t('prices.tiers.2.price'),
+      duration: t('prices.tiers.2.duration'),
+      features: [
+        t('prices.tiers.2.features.0'),
+        t('prices.tiers.2.features.1'),
+        t('prices.tiers.2.features.2'),
+        t('prices.tiers.2.features.3'),
+      ],
+      popular: false,
+    },
+    {
+      id: 4,
+      title: t('prices.tiers.3.title'),
+      description: t('prices.tiers.3.description'),
+      price: t('prices.tiers.3.price'),
+      duration: t('prices.tiers.3.duration'),
+      features: [
+        t('prices.tiers.3.features.0'),
+        t('prices.tiers.3.features.1'),
+        t('prices.tiers.3.features.2'),
+        t('prices.tiers.3.features.3'),
+      ],
+      popular: false,
+    },
+  ];
+
+  const additionalServices = [
+    { name: t('prices.additional.services.0.name'), price: t('prices.additional.services.0.price'), desc: t('prices.additional.services.0.desc') },
+    { name: t('prices.additional.services.1.name'), price: t('prices.additional.services.1.price'), desc: t('prices.additional.services.1.desc') },
+    { name: t('prices.additional.services.2.name'), price: t('prices.additional.services.2.price'), desc: t('prices.additional.services.2.desc') },
+    { name: t('prices.additional.services.3.name'), price: t('prices.additional.services.3.price'), desc: t('prices.additional.services.3.desc') },
+  ];
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
@@ -84,7 +88,7 @@ const PricesPage = () => {
         <div className="bg-image-overlay" />
       </div>
 
-      {/* Atmospheric Effects - Reduced for performance */}
+      {/* Atmospheric Effects */}
       <div className="fixed inset-0 pointer-events-none z-1">
         <div className="grain-overlay" />
         <div className="red-ambient" />
@@ -98,20 +102,17 @@ const PricesPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-blood-red text-sm tracking-widest mb-4 block">INVESTMENT</span>
-            <h1 className="font-gothic text-5xl md:text-7xl font-bold text-soft-white mb-6">
-              PRICING & <span className="text-neon-crimson">PACKAGES</span>
-            </h1>
+            <span className="text-blood-red text-sm tracking-widest mb-4 block">{t('prices.hero.title')}</span>
+            <h1 className="font-gothic text-5xl md:text-7xl font-bold text-soft-white mb-6" dangerouslySetInnerHTML={{ __html: t('prices.hero.heading') }} />
             <div className="w-24 h-0.5 bg-gradient-to-r from-blood-red to-neon-crimson mx-auto mb-8" />
             <p className="text-soft-white/60 font-body max-w-2xl mx-auto">
-              Quality tattooing is an investment in yourself. Every price reflects the hours of 
-              skill, the precision of execution, and the permanence of the art.
+              {t('prices.hero.subtitle')}
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* PricingCards */}
+      {/* Pricing Cards */}
       <section className="relative z-10 px-6 pb-24">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -169,8 +170,8 @@ const PricesPage = () => {
                     ))}
                   </ul>
 
-                  <Link
-                    to="/contact"
+                  <button
+                    onClick={() => langNavigate('/contact')}
                     className={`block w-full text-center py-3 font-gothic text-sm tracking-wider transition-all duration-300 ${
                       tier.popular
                         ? 'bg-gradient-to-r from-blood-red to-neon-crimson text-white hover:shadow-neon-red'
@@ -178,7 +179,7 @@ const PricesPage = () => {
                     }`}
                   >
                     BOOK NOW
-                  </Link>
+                  </button>
                 </div>
               </motion.div>
             ))}
@@ -196,9 +197,7 @@ const PricesPage = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="font-gothic text-3xl md:text-4xl font-bold text-soft-white mb-4">
-              ADDITIONAL <span className="text-neon-crimson">SERVICES</span>
-            </h2>
+            <h2 className="font-gothic text-3xl md:text-4xl font-bold text-soft-white mb-4" dangerouslySetInnerHTML={{ __html: t('prices.additional.title') }} />
             <div className="w-24 h-0.5 bg-gradient-to-r from-blood-red to-neon-crimson mx-auto" />
           </motion.div>
 
@@ -250,16 +249,13 @@ const PricesPage = () => {
                 </div>
                 <div>
                   <h3 className="font-gothic text-xl font-bold text-soft-white mb-3">
-                    IMPORTANT INFORMATION
+                    {t('prices.important.title')}
                   </h3>
                   <p className="text-soft-white/70 font-body leading-relaxed mb-4">
-                    Every tattoo is unique. Final pricing depends on complexity, size, placement, 
-                    and the level of detail. The prices listed are starting estimates. During 
-                    consultation, we'll discuss your vision and provide an accurate quote.
+                    {t('prices.important.text1')}
                   </p>
                   <p className="text-soft-white/60 font-body text-sm">
-                    A non-refundable deposit is required to secure your appointment. This deposit 
-                    will be applied toward your final price.
+                    {t('prices.important.text2')}
                   </p>
                 </div>
               </div>
@@ -277,21 +273,19 @@ const PricesPage = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-gothic text-3xl md:text-4xl font-bold text-soft-white mb-6">
-              READY TO BEGIN YOUR <span className="text-neon-crimson">TRANSFORMATION</span>?
-            </h2>
+            <h2 className="font-gothic text-3xl md:text-4xl font-bold text-soft-white mb-6" dangerouslySetInnerHTML={{ __html: t('prices.cta.heading') }} />
             <p className="text-soft-white/60 font-body mb-8 max-w-xl mx-auto">
-              Book a consultation to discuss your ideas and receive a personalized quote.
+              {t('prices.cta.subtitle')}
             </p>
-            <Link
-              to="/contact"
+            <button
+              onClick={() => langNavigate('/contact')}
               className="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-blood-red to-neon-crimson text-soft-white font-gothic tracking-widest hover:shadow-neon-red-strong transition-all duration-300"
             >
-              <span>SCHEDULE CONSULTATION</span>
+              <span>{t('prices.cta.button')}</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </Link>
+            </button>
           </motion.div>
         </div>
       </section>

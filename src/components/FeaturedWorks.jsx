@@ -1,48 +1,69 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useLocation } from 'react-router-dom';
 import bgImage5 from '../assets/background/5 1.png';
-import topPlace from '../assets/decor/toplace.png';
-
-const featuredWorks = [
-  {
-    id: 1,
-    title: 'Crimson Dragon',
-    category: 'Dragon',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-  },
-  {
-    id: 2,
-    title: 'Oni Mask',
-    category: 'Japanese',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-  },
-  {
-    id: 3,
-    title: 'Gothic Rose',
-    category: 'Gothic',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-  },
-  {
-    id: 4,
-    title: 'Sleeve Masterpiece',
-    category: 'Full Sleeve',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-  },
-  {
-    id: 5,
-    title: 'Koi Fish',
-    category: 'Japanese',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-  },
-  {
-    id: 6,
-    title: 'Blackwork Symbol',
-    category: 'Blackwork',
-    image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
-  },
-];
 
 const FeaturedWorks = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get current language from pathname
+  const getCurrentLang = () => {
+    const segments = location.pathname.split('/').filter(Boolean);
+    const firstSegment = segments[0];
+    const supportedLangs = ['ru', 'en', 'uz'];
+    if (supportedLangs.includes(firstSegment)) {
+      return firstSegment;
+    }
+    return 'ru';
+  };
+
+  const currentLang = getCurrentLang();
+
+  const langNavigate = (path) => {
+    navigate(`/${currentLang}${path}`);
+  };
+
+  const featuredWorks = [
+    {
+      id: 1,
+      title: 'Crimson Dragon',
+      category: t('featuredWorks.categories.dragon'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+    },
+    {
+      id: 2,
+      title: 'Oni Mask',
+      category: t('featuredWorks.categories.japanese'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+    },
+    {
+      id: 3,
+      title: 'Gothic Rose',
+      category: t('featuredWorks.categories.gothic'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+    },
+    {
+      id: 4,
+      title: 'Sleeve Masterpiece',
+      category: t('featuredWorks.categories.fullSleeve'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+    },
+    {
+      id: 5,
+      title: 'Koi Fish',
+      category: t('featuredWorks.categories.japanese'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+    },
+    {
+      id: 6,
+      title: 'Blackwork Symbol',
+      category: t('featuredWorks.categories.blackwork'),
+      image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&h=800&fit=crop',
+    },
+  ];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -76,7 +97,7 @@ const FeaturedWorks = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section Header with Top Place Frame */}
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,14 +105,7 @@ const FeaturedWorks = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          {/* Top Place Frame around header */}
-          <div className="relative inline-block mb-4">
-
-
-          </div>
-          <h2 className="font-gothic text-4xl md:text-6xl font-bold text-soft-white mb-2">
-            Featured <span className="text-gradient-crimson">Works</span>
-          </h2>
+          <h2 className="font-gothic text-4xl md:text-6xl font-bold text-soft-white mb-2" dangerouslySetInnerHTML={{ __html: t('featuredWorks.title') }} />
           <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-neon-red to-transparent mx-auto" />
         </motion.div>
 
@@ -158,11 +172,11 @@ const FeaturedWorks = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <Link
-            to="/works"
+          <button
+            onClick={() => langNavigate('/works')}
             className="btn-secondary inline-flex items-center space-x-4"
           >
-            <span>Explore Full Portfolio</span>
+            <span>{t('featuredWorks.exploreFull')}</span>
             <svg
               className="w-5 h-5 text-neon-red"
               fill="none"
@@ -171,7 +185,7 @@ const FeaturedWorks = () => {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </Link>
+          </button>
         </motion.div>
       </div>
     </section>
