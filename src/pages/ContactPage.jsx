@@ -297,22 +297,35 @@ const ContactPage = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="relative w-full py-4 font-gothic tracking-widest text-soft-white disabled:opacity-50 disabled:cursor-not-allowed group overflow-hidden"
+                    className="relative w-full py-4 font-gothic tracking-widest text-soft-white disabled:opacity-50 disabled:cursor-not-allowed group overflow-hidden bg-pure-black/90"
                   >
-                    {/* Animated Background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blood-red via-neon-crimson to-blood-red bg-[length:200%_100%] transition-all duration-700 group-hover:bg-[length:100%_100%] animate-gradient" />
+                    {/* Outer Glow Border */}
+                    <div className="absolute inset-0 border-2 border-blood-red/30 group-hover:border-neon-crimson/60 transition-all duration-300" />
                     
-                    {/* Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blood-red to-neon-crimson opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-xl" />
+                    {/* Animated Background Gradient */}
+                    <div className="absolute inset-1 bg-gradient-to-r from-blood-red/20 via-neon-crimson/30 to-blood-red/20 bg-[length:200%_100%] transition-all duration-700 group-hover:bg-[length:100%_100%] animate-gradient" />
                     
-                    {/* Border Glow */}
-                    <div className="absolute inset-0 border-2 border-neon-crimson/0 group-hover:border-neon-crimson/50 transition-all duration-300" />
+                    {/* Decorative Corner Lines */}
+                    <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-blood-red/40 group-hover:border-neon-crimson/80 transition-all duration-300" />
+                    <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-blood-red/40 group-hover:border-neon-crimson/80 transition-all duration-300" />
+                    <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-blood-red/40 group-hover:border-neon-crimson/80 transition-all duration-300" />
+                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-blood-red/40 group-hover:border-neon-crimson/80 transition-all duration-300" />
+                    
+                    {/* Inner Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blood-red/10 to-neon-crimson/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    {/* Background Pattern - Diagonal Lines */}
+                    <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300" 
+                         style={{
+                           backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(139, 0, 0, 0.3) 10px, rgba(139, 0, 0, 0.3) 20px)'
+                         }} 
+                    />
                     
                     {/* Button Content */}
                     <span className="relative flex items-center justify-center space-x-3">
                       {isSubmitting ? (
                         <>
-                          <svg className="animate-spin w-5 h-5 text-soft-white" fill="none" viewBox="0 0 24 24">
+                          <svg className="animate-spin w-5 h-5 text-neon-crimson" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                           </svg>
@@ -320,11 +333,11 @@ const ContactPage = () => {
                         </>
                       ) : (
                         <>
-                          <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-5 h-5 text-blood-red group-hover:text-neon-crimson transition-all duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                           </svg>
-                          <span>{t('contact.form.submit')}</span>
-                          <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <span className="text-shadow-glow">{t('contact.form.submit')}</span>
+                          <svg className="w-5 h-5 text-blood-red group-hover:text-neon-crimson transition-all duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                           </svg>
                         </>

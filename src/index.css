@@ -21,6 +21,21 @@
   animation: gradient 3s ease infinite;
 }
 
+/* Text glow effect for button */
+.text-shadow-glow {
+  text-shadow: 
+    0 0 10px rgba(139, 0, 0, 0.5),
+    0 0 20px rgba(139, 0, 0, 0.3),
+    0 0 30px rgba(139, 0, 0, 0.2);
+}
+
+.group:hover .text-shadow-glow {
+  text-shadow: 
+    0 0 15px rgba(255, 0, 0, 0.7),
+    0 0 30px rgba(139, 0, 0, 0.5),
+    0 0 45px rgba(139, 0, 0, 0.3);
+}
+
 /* ============================================
    NEO-GOTHIC DARK ASIAN AESTHETIC
    "A hidden neo-gothic tattoo sanctuary in Tokyo
