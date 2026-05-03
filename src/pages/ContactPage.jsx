@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import bgImage4 from '../assets/background/5 1.png';
+import { sendToTelegram } from '../utils/telegram';
 
 const ContactPage = () => {
   const { t } = useTranslation();
@@ -24,13 +25,28 @@ const ContactPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    try {
+      const success = await sendToTelegram(formData);
+      if (success) {
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          tattooIdea: '',
+          placement: '',
+          preferredDate: '',
+          budget: '',
+        });
+      }
+    } catch (err) {
+      console.error('Form submission error:', err);
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-    }, 1500);
+    }
   };
 
   const studioInfo = [

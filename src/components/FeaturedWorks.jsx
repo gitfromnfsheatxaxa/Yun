@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
-import bgImage5 from '../assets/background/5 1.png';
+import bgImage5 from '../assets/background/3 1.png';
 
 const FeaturedWorks = () => {
   const { t } = useTranslation();
